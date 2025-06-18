@@ -3,58 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бойова База - Google Sheets</title>
+    <title>ALIVE</title>
     <!-- Підключення шрифтів -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <!-- Підключення файлу стилів -->
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Підключення файлу стилів з параметром для оновлення кешу -->
+    <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
     <header class="header">
         <div class="container">
             <h1>ALIVE</h1>
-            <!-- Навігація поки що складається з однієї кнопки, але готова до розширення -->
-            <nav class="nav">
-                <button class="nav-btn active">Учасники</button>
-            </nav>
         </div>
     </header>
 
     <main class="main">
         <div class="container">
-            <!-- Секція для відображення списку учасників -->
+            <!-- Секція для відображення списку -->
             <section id="participantsSection">
                 <div class="controls-container">
-                    <button id="refreshBtn" class="btn refresh-btn">🔄 Оновити дані</button>
                     <div id="sortControls" class="sort-controls">
                         <button class="sort-btn active" data-sort="default">За замовчуванням</button>
-                        <button class="sort-btn" data-sort="score">За балами ⬇</button>
-                        <button class="sort-btn" data-sort="name">За іменем</button>
+                        <button class="sort-btn" data-sort="balance">За балансом</button>
+                        <button class="sort-btn" data-sort="name">За позивним</button>
                     </div>
+                    <button id="refreshBtn" class="btn refresh-btn">🔄 Оновити</button>
                 </div>
                 
-                <!-- Контейнер для повідомлень (завантаження, помилки, успіх) -->
+                <!-- Контейнер для повідомлень -->
                 <div id="messageContainer"></div>
 
-                <!-- Сітка для відображення карток учасників -->
+                <!-- Сітка для відображення карток -->
                 <div id="participantsContainer" class="participants-grid" aria-live="polite">
-                    <!-- Картки учасників будуть завантажені динамічно -->
+                    <!-- Карточки будуть завантажені динамічно -->
                 </div>
             </section>
 
-            <!-- Секція для відображення профілю одного учасника -->
+            <!-- Секція для відображення профілю -->
             <section id="profileSection" class="hidden">
-                <button id="backBtn" class="btn back-btn">← Назад до учасників</button>
+                <button id="backBtn" class="btn back-btn">← Назад до списку</button>
                 <div id="profileContainer" class="profile">
-                    <!-- Профіль буде завантажено динамічно -->
+                    <!-- Профіль буде завантажений динамічно -->
                 </div>
             </section>
         </div>
     </main>
 
-    <!-- Підключення файлу скриптів з атрибутом defer -->
-    <script src="script.js" defer></script>
+    <!-- Підключення файлу скриптів з параметром для оновлення кешу -->
+    <script src="script.js?v=2" defer></script>
 
 </body>
 </html>

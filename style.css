@@ -1,21 +1,51 @@
 :root {
-    --primary-color: #c1a270;
-    --primary-color-dark: #a68a5b;
-    --primary-color-light: #d4b886;
+    /* --- Кольорова палітра --- */
+    --primary-color: #c1a270; 
+    --primary-color-dark: #c1a270 ;
     --text-color-light: #ffffff;
-    --text-color-dark: #333333;
-    --background-color: #ffffff;
-    --surface-color: #f8f9fa;
-    --border-color: #e9ecef;
-    --error-color: #dc3545;
-    --success-color: #28a745;
-    --font-family: 'Roboto', sans-serif;
-    --border-radius-sm: 8px;
-    --border-radius-md: 15px;
-    --border-radius-lg: 25px;
-    --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --text-color-dark: #c1a270; /* Змінено для кращого контрасту */
+    --text-color-secondary: #7f8c9a;
+    --background-color: #f4f5f7; /* Світліший фон */
+    --surface-color: #ffffff;
+    --border-color: #e1e4e8;
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+    --highlight-gradient: linear-gradient(45deg, #c1a270, #b39561);
+
+    /* --- Кольори для дизайну "Фішер" --- */
+    --fisher-primary-bg: #c1a270; /* Темно-сіро-синій */
+    --fisher-secondary-bg: #c1a270; /* Світліший сіро-синій */
+    --fisher-card-bg: #ffffff; 
+    --fisher-text-primary: #ffffff;
+    --fisher-text-secondary: #ffffff; /* Срібний */
+
+    /* --- Типографіка --- */
+    --font-family: 'Inter', sans-serif;
+    --font-size-base: 16px; /* Базовий розмір шрифту */
+    --font-size-h1: 1.8rem;
+    --font-size-h2: 2.2rem;
+    --font-size-large: 1.2rem;
+    --font-size-small: 0.9rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* --- Макет та відступи --- */
+    --container-max-width: 1200px;
+    --spacing-base: 1rem; /* Базовий відступ */
+    --spacing-small: 0.5rem;
+    --spacing-medium: 1.5rem;
+    --spacing-large: 2.5rem;
+
+    /* --- Інтерфейсні елементи --- */
+    --border-radius: 12px;
+    --border-radius-small: 8px;
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 8px 25px rgba(44, 62, 80, 0.1);
+    --transition-speed: 0.2s;
 }
+
 
 /* --- Загальні стилі --- */
 * {
@@ -29,12 +59,13 @@ body {
     background-color: var(--background-color);
     color: var(--text-color-dark);
     line-height: 1.6;
+    font-size: var(--font-size-base);
 }
 
 .container {
-    max-width: 1200px;
+    max-width: var(--container-max-width);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 var(--spacing-medium);
 }
 
 .hidden {
@@ -44,111 +75,85 @@ body {
 /* --- Кнопки --- */
 .btn {
     border: none;
-    padding: 0.7rem 1.5rem;
-    border-radius: var(--border-radius-lg);
+    padding: calc(var(--spacing-base) * 0.7) calc(var(--spacing-base) * 1.4);
+    border-radius: var(--border-radius-small);
     cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.9rem;
+    transition: all var(--transition-speed) ease;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--spacing-small);
 }
 
 .btn:hover {
     transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
 }
 
 .refresh-btn {
-    background-color: var(--success-color);
+    background-color: var(--primary-color);
     color: var(--text-color-light);
 }
 
 .refresh-btn:hover {
-    background-color: #218838;
+    background-color: var(--primary-color-dark);
 }
 
 .back-btn {
-    background-color: var(--primary-color);
-    color: var(--text-color-light);
-    margin-bottom: 1rem;
+    background-color: var(--border-color);
+    color: var(--text-color-dark);
+    margin-bottom: var(--spacing-medium);
 }
 
 .back-btn:hover {
-    background-color: var(--primary-color-dark);
+    background-color: #dce1e6;
 }
 
 /* --- Шапка --- */
 .header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-light) 100%);
-    color: var(--text-color-light);
-    padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.header h1 {
-    font-size: 2rem;
-    font-weight: 500;
+    background: var(--surface-color);
+    color: var(--text-color-dark);
+    padding: var(--spacing-medium) 0;
+    border-bottom: 1px solid var(--border-color);
     text-align: center;
 }
 
-.nav {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.nav-btn {
-    background: rgba(255, 255, 255, 0.2);
-    color: var(--text-color-light);
-    border: none;
-    padding: 0.5rem 1.5rem;
-    border-radius: var(--border-radius-lg);
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.nav-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.nav-btn.active {
-    background: var(--text-color-light);
-    color: var(--primary-color);
+.header h1 {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 1px;
+    color: var(--primary-color-dark);
 }
 
 /* --- Основний контент --- */
 .main {
-    padding: 2rem 0;
-    min-height: calc(100vh - 120px);
+    padding: var(--spacing-large) 0;
 }
 
 /* --- Повідомлення --- */
+#messageContainer {
+    margin-bottom: var(--spacing-medium);
+}
 .message {
     text-align: center;
-    padding: 1rem;
-    border-radius: var(--border-radius-sm);
-    margin: 1rem 0;
+    padding: var(--spacing-base);
+    border-radius: var(--border-radius-small);
+    font-weight: var(--font-weight-medium);
     border: 1px solid transparent;
 }
-
 .message.loading {
-    color: var(--primary-color-dark);
-    background-color: #fcf8e3;
-    border-color: #faf2cc;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
 }
-
 .message.error {
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
+    color: var(--text-color-light);
+    background-color: var(--error-color);
 }
-
 .message.success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
+    color: var(--text-color-light);
+    background-color: var(--success-color);
 }
 
 /* --- Керування та сортування --- */
@@ -157,234 +162,228 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: var(--spacing-base);
+    margin-bottom: var(--spacing-large);
 }
 
 .sort-controls {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--spacing-small);
     flex-wrap: wrap;
+    background-color: #e8ebee;
+    padding: 5px;
+    border-radius: var(--border-radius);
 }
 
 .sort-btn {
-    background: #6c757d;
-    color: var(--text-color-light);
+    background: transparent;
+    color: var(--text-color-secondary);
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius-lg);
+    padding: calc(var(--spacing-small) * 1.6) var(--spacing-base);
+    border-radius: var(--border-radius-small);
     cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.875rem;
+    transition: all var(--transition-speed) ease;
 }
 
 .sort-btn:hover {
-    background: #5a6268;
+    background: #dde1e5;
+    color: var(--text-color-dark);
 }
 
 .sort-btn.active {
-    background: var(--primary-color);
+    background: var(--surface-color);
+    color: var(--text-color-dark);
+    box-shadow: var(--shadow-soft);
 }
 
-/* --- Сітка учасників --- */
+/* --- Сітка --- */
 .participants-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-medium);
 }
 
+/* --- Дизайн карток --- */
 .participant-card {
-    background: var(--background-color);
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-light);
+    background: var(--surface-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    border: 1px solid var(--border-color);
 }
 
 .participant-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-medium);
 }
 
-.participant-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-light) 100%);
-    padding: 1.5rem;
-    text-align: center;
-    color: var(--text-color-light);
-    position: relative;
+.participant-card .card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-base);
+    padding: var(--spacing-base);
+    background: var(--fisher-primary-bg);
 }
 
-.score-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(255, 255, 255, 0.9);
-    color: var(--primary-color);
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius-lg);
-    font-weight: 700;
-    font-size: 1rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.participant-avatar {
-    width: 80px;
-    height: 80px;
+.participant-card .participant-avatar {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    margin: 0 auto 1rem;
-    border: 3px solid white;
+    border: 3px solid var(--surface-color);
+    flex-shrink: 0;
     object-fit: cover;
-    background-color: #e0e0e0;
 }
 
-.participant-name {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.participant-role {
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
-.participant-info {
-    padding: 1.5rem;
+.participant-card .name-role-group {
     flex-grow: 1;
 }
 
-.participant-bio {
-    color: #666;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
+.participant-card .participant-name {
+    font-size: 1.4rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--fisher-text-primary);
+    line-height: 1.2;
 }
 
-.participant-weapons {
+.participant-card .participant-position {
+    font-size: 0.85rem;
+    color: var(--fisher-text-secondary);
+    text-transform: uppercase;
+    font-weight: var(--font-weight-medium);
+}
+
+.participant-card .card-body {
+    padding: var(--spacing-base);
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-top: auto;
+    gap: var(--spacing-small);
+    flex-grow: 1;
 }
 
-.weapon-info {
-    background: var(--surface-color);
-    padding: 0.5rem;
-    border-radius: var(--border-radius-sm);
-    font-size: 0.85rem;
-    border-left: 3px solid var(--primary-color);
+.participant-card .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-small) var(--spacing-base);
+    background: #f8f9fa;
+    border-radius: var(--border-radius-small);
+    border-left: 4px solid var(--primary-color);
 }
 
-.weapon-label {
-    font-weight: 600;
-    color: var(--primary-color);
+.participant-card .info-label {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color-secondary);
+    font-size: 0.9rem;
+}
+
+.participant-card .info-value {
+    font-weight: var(--font-weight-bold);
+    font-size: 1rem;
+    color: var(--text-color-dark);
+}
+
+.participant-card .info-value.balance-value {
+    font-size: 1.1rem;
 }
 
 /* --- Стилі профілю --- */
 .profile {
-    max-width: 900px;
+    max-width: 700px;
     margin: 0 auto;
-    background: var(--background-color);
-    border-radius: var(--border-radius-lg);
+    background: var(--surface-color);
+    border-radius: var(--border-radius);
     box-shadow: var(--shadow-medium);
     overflow: hidden;
 }
 
 .profile-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-light) 100%);
-    color: var(--text-color-light);
-    padding: 2rem;
+    background: var(--highlight-gradient);
+    padding: calc(var(--spacing-large) * 1.2);
     text-align: center;
-    position: relative;
-}
-
-.profile-score {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    color: var(--primary-color);
-    padding: 1rem 1.5rem;
-    border-radius: var(--border-radius-lg);
-    font-weight: 700;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color-light);
 }
 
 .profile-avatar {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    margin: 0 auto 1rem;
-    border: 5px solid white;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    margin: 0 auto var(--spacing-medium);
     object-fit: cover;
-    background-color: #e0e0e0;
+    border: 4px solid var(--surface-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .profile-name {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-small);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-.profile-bio {
+.profile-position {
     font-size: 1.1rem;
+    color: var(--text-color-light);
     opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
 }
 
 .profile-content {
-    padding: 2rem;
+    padding: var(--spacing-large);
 }
 
 .profile-section {
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing-large);
+}
+.profile-section:last-child {
+    margin-bottom: 0;
 }
 
 .section-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-color-secondary);
+    margin-bottom: var(--spacing-base);
+    padding-bottom: var(--spacing-small);
+    border-bottom: 1px solid var(--border-color);
 }
 
-.weapon-card, .equipment-card {
-    background: var(--surface-color);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-sm);
-    padding: 1rem;
-    margin-bottom: 1rem;
-}
-
-.weapon-title {
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.equipment-list {
+.info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-medium);
 }
 
-.equipment-item {
-    background: white;
-    padding: 0.5rem 1rem;
-    border-radius: var(--border-radius-sm);
-    border-left: 3px solid var(--primary-color);
-    font-size: 0.9rem;
+.info-card {
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-medium);
+    text-align: center;
 }
+
+.info-card-title {
+    font-size: var(--font-size-small);
+    color: var(--text-color-secondary);
+    margin-bottom: var(--spacing-small);
+}
+
+.info-card-value {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color-dark);
+}
+
+.info-card-value.balance {
+    color: var(--success-color);
+}
+
 
 /* --- Адаптивність --- */
 @media (max-width: 768px) {
@@ -393,22 +392,25 @@ body {
         align-items: stretch;
     }
 
-    .nav {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
+    .header h1 {
+        font-size: 1.5rem;
     }
-
+    
     .profile-avatar {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
     }
 
     .profile-name {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     .container {
-        padding: 0 15px;
+        padding: 0 var(--spacing-medium);
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
     }
 }
+
