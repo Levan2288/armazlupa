@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="ALIVE_Logo.png" type="image/x-icon">
     <title>ALIVE</title>
     <!-- Підключення шрифтів -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,21 +13,35 @@
 <body>
 
     <header class="header">
-        <div class="container">
+        
+        <a class="header-reference" href="#" class="logo">
+            <img class="header-logo" src="ALIVE_logo.png" height="64" width="64" alt="ALIVE Logo" class="logo-img">
             <h1>ALIVE</h1>
-        </div>
+            
+        </a>
+        
     </header>
 
     <main class="main">
+        
         <div class="container">
             <!-- Секція для відображення списку -->
             <section id="participantsSection">
+                <span id="additional-info">
+                    <h2 class="main-title">Список учасників</h2>
+                    <span id="participant-quantity-section">
+                        <h2 class="main-title">Кількість учасників:</h2>
+                        <h2 class="main-title" id="participant-quantity">0</h2>
+                    </span>
+                </span>
                 <div class="controls-container">
                     <div id="sortControls" class="sort-controls">
                         <button class="sort-btn active" data-sort="default">За замовчуванням</button>
                         <button class="sort-btn" data-sort="balance">За балансом</button>
                         <button class="sort-btn" data-sort="name">За позивним</button>
+                        <button class="sort-btn" data-sort="unit">За підрозділом</button>
                     </div>
+                    <input id="search-input"type="search" placeholder="Пошук учасників" aria-label="Пошук учасників">
                     <button id="refreshBtn" class="btn refresh-btn">🔄 Оновити</button>
                 </div>
                 
