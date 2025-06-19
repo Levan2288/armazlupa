@@ -4,7 +4,9 @@ const App = {
         // !!! ВАЖЛИВО: Замініть цей ID на ID вашої опублікованої Google Таблиці
         publishedId: '2PACX-1vSyv3bAifxY2clEjSnLpiSFm3RwRULCbbuk19HGQYBiRmE-Llq81jmk5kalFY8v07Vt4DODTxltvVZa',
         gid: '0', // ID аркуша (0 для першого)
-        autoRefreshInterval: 300000 // Інтервал авто-оновлення: 5 хвилин
+        autoRefreshInterval: 300000, // Інтервал авто-оновлення: 5 хвилин
+        // !!! ЗАМІНІТЬ ЦЕ ПОСИЛАННЯ на URL вашого зображення за замовчуванням
+        defaultImageUrl: 'https://i.pinimg.com/736x/87/a4/08/87a408ed3ffa34ff6d8c32f9bf7f72a7.jpg'
     },
 
     // --- Стан додатку ---
@@ -109,7 +111,6 @@ const App = {
 
     /**
      * Парсинг CSV-тексту та збереження даних.
-     * @param {string} csvText - Текст у форматі CSV.
      */
     parseAndStoreData(csvText) {
         const rows = this.parseCSV(csvText);
@@ -120,10 +121,10 @@ const App = {
 
         const newProfiles = {};
         // Пропускаємо заголовок (slice(1))
+        // Додаємо новий стовпець для URL аватара (шостий стовпець, індекс 5)
         rows.slice(1).forEach((row, index) => {
-            // Перевіряємо, що є хоча б позивний
             if (row.length > 0 && row[0]?.trim()) {
-                const id = row[0].trim().toLowerCase(); // Використовуємо позивний як ID для стабільності
+                const id = row[0].trim().toLowerCase();
                 newProfiles[id] = {
                     id: id,
                     name: row[0]?.trim() || 'Без позивного',
@@ -131,6 +132,7 @@ const App = {
                     unit: row[2]?.trim() || 'Не вказано',
                     certificate: row[3]?.trim() || 'Немає',
                     balance: parseInt(row[4]?.trim(), 10) || 0,
+                    avatarUrl: row[5]?.trim() || null // Нове поле для URL аватара
                 };
             }
         });
@@ -144,8 +146,6 @@ const App = {
     
     /**
      * Надійний парсер CSV, що обробляє лапки.
-     * @param {string} text - Вхідний CSV текст.
-     * @returns {Array<Array<string>>} - Масив рядків.
      */
     parseCSV(text) {
         const lines = text.replace(/\r/g, '').split('\n');
@@ -169,7 +169,7 @@ const App = {
             }
             result.push(current.trim());
             return result;
-        }).filter(row => row.length > 1 || row[0]); // Фільтруємо порожні рядки
+        }).filter(row => row.length > 1 || row[0]);
     },
 
     /**
@@ -177,19 +177,17 @@ const App = {
      */
     loadDemoData() {
         this.state.profiles = {
-            'фішер': { id: 'фішер', name: 'Фішер', position: 'Командир відділення', unit: 'Пісочний', certificate: '230', balance: 230 },
-            'віхрь': { id: 'віхрь', name: 'Віхрь', position: 'Ст.стрілець', unit: 'Пісочний', certificate: '0', balance: 0 },
-            'бумер': { id: 'бумер', name: 'Бумер', position: 'Розвідник', unit: 'Пісочний', certificate: '0', balance: 0 },
+            'фішер': { id: 'фішер', name: 'Фішер', position: 'Командир відділення', unit: 'Пісочний', certificate: '230', balance: 230, avatarUrl: null },
+            'віхрь': { id: 'віхрь', name: 'Віхрь', position: 'Ст.стрілець', unit: 'Пісочний', certificate: '0', balance: 0, avatarUrl: null },
+            'бумер': { id: 'бумер', name: 'Бумер', position: 'Розвідник', unit: 'Пісочний', certificate: '0', balance: 0, avatarUrl: null },
         };
     },
     
     /**
      * Обробка сортування.
-     * @param {string} type - Тип сортування ('default', 'balance', 'name').
      */
     handleSort(type) {
         this.state.currentSort = type;
-        // Оновлення активного стану кнопок
         this.elements.sortControls.querySelectorAll('.sort-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.sort === type);
         });
@@ -202,12 +200,11 @@ const App = {
     renderParticipants() {
         const profilesArray = Object.values(this.state.profiles);
         
-        // Сортування масиву
         profilesArray.sort((a, b) => {
             switch (this.state.currentSort) {
                 case 'balance': return b.balance - a.balance;
                 case 'name': return a.name.localeCompare(b.name, 'uk');
-                default: return 0; // Залишаємо порядок з таблиці
+                default: return 0;
             }
         });
         
@@ -216,13 +213,11 @@ const App = {
             return;
         }
 
-        // Генерація HTML та вставка в DOM
         this.elements.participantsContainer.innerHTML = profilesArray.map(p => this.createParticipantCardHTML(p)).join('');
     },
 
     /**
      * Відображення конкретного профілю.
-     * @param {string} profileId - ID профілю для відображення.
      */
     renderProfile(profileId) {
         const profile = this.state.profiles[profileId];
@@ -234,16 +229,14 @@ const App = {
     },
     
     /**
-     * Перемикання між виглядами (список / профіль).
-     * @param {'participants' | 'profile'} viewName - Назва вигляду.
-     * @param {string | null} id - ID профілю (для вигляду 'profile').
+     * Перемикання між виглядами.
      */
     showView(viewName, id = null) {
         if (viewName === 'profile') {
             this.elements.participantsSection.classList.add('hidden');
             this.elements.profileSection.classList.remove('hidden');
             this.renderProfile(id);
-            window.scrollTo(0, 0); // Прокрутка сторінки вгору
+            window.scrollTo(0, 0);
         } else {
             this.elements.profileSection.classList.add('hidden');
             this.elements.participantsSection.classList.remove('hidden');
@@ -251,10 +244,7 @@ const App = {
     },
     
     /**
-     * Відображення повідомлень для користувача.
-     * @param {'loading' | 'success' | 'error'} type - Тип повідомлення.
-     * @param {string} message - Текст повідомлення.
-     * @param {number | null} timeout - Час в мс, після якого повідомлення зникне.
+     * Відображення повідомлень.
      */
     showMessage(type, message, timeout = null) {
         const msgEl = this.elements.messageContainer;
@@ -276,7 +266,7 @@ const App = {
      * Створює HTML для картки учасника.
      */
     createParticipantCardHTML(p) {
-        const avatarUrl = this.getImageUrl(null, p.name);
+        const avatarUrl = this.getImageUrl(p.avatarUrl);
         return `
             <div class="participant-card" data-id="${p.id}">
                 <div class="card-header">
@@ -308,7 +298,7 @@ const App = {
      * Створює HTML для сторінки профілю.
      */
     createProfileHTML(p) {
-        const avatarUrl = this.getImageUrl(null, p.name, 120); // Аватар більшого розміру
+        const avatarUrl = this.getImageUrl(p.avatarUrl);
         return `
             <div class="profile-header">
                 <img src="${avatarUrl}" alt="Аватар ${p.name}" class="profile-avatar">
@@ -337,22 +327,18 @@ const App = {
     },
 
     /**
-     * Генерує URL для аватара або створює SVG-заглушку.
+     * Повертає URL аватара.
+     * Якщо URL вказано в профілі - повертає його.
+     * Інакше - повертає URL за замовчуванням з конфігурації.
      */
-    getImageUrl(url, name, size = 60) {
-        // Якщо є реальний URL, повертаємо його
-        if (url && (url.startsWith('http') || url.startsWith('data:'))) {
-            return url;
+    getImageUrl(profileUrl) {
+        // Якщо є реальний URL з таблиці (профілю), повертаємо його
+        if (profileUrl && profileUrl.startsWith('http')) {
+            return profileUrl;
         }
         
-        // Створення SVG-заглушки з ініціалами
-        const initials = name ? name.trim().charAt(0).toUpperCase() : '?';
-        const colors = ['#4a6fa5', '#1e88e5', '#3949ab', '#5e35b1', '#00897b', '#43a047', '#e53935', '#d81b60'];
-        const color = colors[name.length % colors.length];
-        const svg = `<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="${color}"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="${size/2}" font-family="Inter, sans-serif" font-weight="bold">${initials}</text></svg>`;
-        
-        // Кодуємо SVG в base64
-        return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svg)));
+        // В іншому випадку, повертаємо URL за замовчуванням з конфігурації
+        return this.config.defaultImageUrl;
     }
 };
 
