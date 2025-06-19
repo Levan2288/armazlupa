@@ -322,7 +322,7 @@ const App = {
                     </div>
                     <div class="info-item balance">
                         <span class="info-label">Баланс:</span>
-                        <span class="info-value balance-value">${p.balance}<img src="Acoin.png" width="20" height="20" class="coin-img"></img></span>
+                        <span class="info-value balance-value">${p.balance}<img src="images/Acoin.png" width="20" height="20" class="coin-img"></img></span>
                     </div>
                 </div>
             </div>
@@ -355,7 +355,7 @@ const App = {
                         </div>
                         <div class="info-card">
                             <div class="info-card-title">Баланс</div>
-                            <div class="info-card-value balance">${p.balance} <img src="Acoin.png" width="32" height="32" class="coin-img"></img></div>
+                            <div class="info-card-value balance">${p.balance} <img src="images/Acoin.png" width="32" height="32" class="coin-img"></img></div>
                         </div>
                         
                     </div>
