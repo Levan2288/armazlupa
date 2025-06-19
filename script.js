@@ -4,8 +4,7 @@ const App = {
         // !!! ВАЖЛИВО: Замініть цей ID на ID вашої опублікованої Google Таблиці
         publishedId: '2PACX-1vSyv3bAifxY2clEjSnLpiSFm3RwRULCbbuk19HGQYBiRmE-Llq81jmk5kalFY8v07Vt4DODTxltvVZa',
         gid: '0', // ID аркуша (0 для першого)
-        autoRefreshInterval: 300000, // Інтервал авто-оновлення: 5 хвилин
-        // !!! ЗАМІНІТЬ ЦЕ ПОСИЛАННЯ на URL вашого зображення за замовчуванням
+        autoRefreshInterval: 30000, // Інтервал авто-оновлення: 30 секунд
         defaultImageUrl: 'https://i.pinimg.com/736x/87/a4/08/87a408ed3ffa34ff6d8c32f9bf7f72a7.jpg'
     },
 
@@ -26,6 +25,7 @@ const App = {
         this.cacheElements();
         this.bindEvents();
         this.loadData();
+        
     },
 
     /**
@@ -101,16 +101,18 @@ const App = {
 
         } catch (error) {
             console.error('Помилка завантаження даних:', error);
-            this.showMessage('error', `<strong>Помилка завантаження:</strong> ${error.message}<br><em>Показую демонстраційні дані.</em>`, 10000);
+            this.showMessage('error', `<strong>Помилка завантаження:</strong> ${error.message}<br><em>Показано демонстраційні дані.</em>`, 5000);
             this.loadDemoData(); // Завантаження демо-даних у випадку помилки
             this.renderParticipants();
         } finally {
+            document.getElementById('participant-quantity').textContent = Object.keys(this.state.profiles).length || 0;
             this.state.isLoading = false;
         }
     },
 
     /**
      * Парсинг CSV-тексту та збереження даних.
+     * @param {string} csvText - Текст у форматі CSV.
      */
     parseAndStoreData(csvText) {
         const rows = this.parseCSV(csvText);
@@ -121,10 +123,10 @@ const App = {
 
         const newProfiles = {};
         // Пропускаємо заголовок (slice(1))
-        // Додаємо новий стовпець для URL аватара (шостий стовпець, індекс 5)
         rows.slice(1).forEach((row, index) => {
+            // Перевіряємо, що є хоча б позивний
             if (row.length > 0 && row[0]?.trim()) {
-                const id = row[0].trim().toLowerCase();
+                const id = row[0].trim().toLowerCase(); // Використовуємо позивний як ID для стабільності
                 newProfiles[id] = {
                     id: id,
                     name: row[0]?.trim() || 'Без позивного',
@@ -132,8 +134,9 @@ const App = {
                     unit: row[2]?.trim() || 'Не вказано',
                     certificate: row[3]?.trim() || 'Немає',
                     balance: parseInt(row[4]?.trim(), 10) || 0,
-                    avatarUrl: row[5]?.trim() || null // Нове поле для URL аватара
-                };
+                    avatarUrl: row[5]?.trim() || null, // Нове поле для URL аватара
+                    note: row[6]?.trim() || 'Немає приміток',
+                }
             }
         });
 
@@ -146,6 +149,8 @@ const App = {
     
     /**
      * Надійний парсер CSV, що обробляє лапки.
+     * @param {string} text - Вхідний CSV текст.
+     * @returns {Array<Array<string>>} - Масив рядків.
      */
     parseCSV(text) {
         const lines = text.replace(/\r/g, '').split('\n');
@@ -169,7 +174,7 @@ const App = {
             }
             result.push(current.trim());
             return result;
-        }).filter(row => row.length > 1 || row[0]);
+        }).filter(row => row.length > 1 || row[0]); // Фільтруємо порожні рядки
     },
 
     /**
@@ -177,17 +182,23 @@ const App = {
      */
     loadDemoData() {
         this.state.profiles = {
-            'фішер': { id: 'фішер', name: 'Фішер', position: 'Командир відділення', unit: 'Пісочний', certificate: '230', balance: 230, avatarUrl: null },
-            'віхрь': { id: 'віхрь', name: 'Віхрь', position: 'Ст.стрілець', unit: 'Пісочний', certificate: '0', balance: 0, avatarUrl: null },
-            'бумер': { id: 'бумер', name: 'Бумер', position: 'Розвідник', unit: 'Пісочний', certificate: '0', balance: 0, avatarUrl: null },
+            'фішер': { id: 'фішер', name: 'Фішер', position: 'Командир відділення', unit: 'Альфа', certificate: 'Пісочний', balance: 0, avatarUrl: null, note: 'Написав цей текст' },
+            'віхрь': { id: 'віхрь', name: 'Віхрь', position: 'Ст.стрілець', unit: 'Дельта', certificate: 'Пісочний', balance: 10, avatarUrl: null, note: '123' },
+            'бумер': { id: 'бумер', name: 'Бумер', position: 'Розвідник', unit: 'Браво', certificate: 'Червоний', balance: 10, avatarUrl: null, note: 'Відзначився в операції "Буревій", відзначився в операції "Кулак", Відзначився в операції "Периметр"' },
+            'чех': { id: 'чех', name: 'Чех', position: 'Розвідник', unit: 'Чарлі', certificate: 'Синий', balance: 0, avatarUrl: null, note: 'Відзначився в операції "Буревій"' },
+            'мусон': { id: 'мусон', name: 'Мусон', position: 'Кулеметник', unit: 'Альфа', certificate: 'красный', balance: 10, avatarUrl: null, note: 'Відзначився в операції "Кулак"' },
+            'ванвей': { id: 'ванвей', name: 'Ванвей', position: 'Розвідник', unit: 'Браво', certificate: 'sand', balance: 10, avatarUrl: null, note: 'Відзначився в операції "Кулак"' },
+            'смола': { id: 'смола', name: 'Смола', position: 'Командир відділення', unit: 'Барракуда', certificate: 'Песчаный', balance: 10, avatarUrl: null, note: 'Відзначився в операції "Кулак"' },
         };
     },
     
     /**
      * Обробка сортування.
+     * @param {string} type - Тип сортування ('default', 'balance', 'name').
      */
     handleSort(type) {
         this.state.currentSort = type;
+        // Оновлення активного стану кнопок
         this.elements.sortControls.querySelectorAll('.sort-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.sort === type);
         });
@@ -200,11 +211,13 @@ const App = {
     renderParticipants() {
         const profilesArray = Object.values(this.state.profiles);
         
+        // Сортування масиву
         profilesArray.sort((a, b) => {
             switch (this.state.currentSort) {
                 case 'balance': return b.balance - a.balance;
+                case 'unit': return a.unit.localeCompare(b.unit, 'uk');
                 case 'name': return a.name.localeCompare(b.name, 'uk');
-                default: return 0;
+                default: return 0; // Залишаємо порядок з таблиці
             }
         });
         
@@ -213,11 +226,13 @@ const App = {
             return;
         }
 
+        // Генерація HTML та вставка в DOM
         this.elements.participantsContainer.innerHTML = profilesArray.map(p => this.createParticipantCardHTML(p)).join('');
     },
 
     /**
      * Відображення конкретного профілю.
+     * @param {string} profileId - ID профілю для відображення.
      */
     renderProfile(profileId) {
         const profile = this.state.profiles[profileId];
@@ -229,14 +244,16 @@ const App = {
     },
     
     /**
-     * Перемикання між виглядами.
+     * Перемикання між виглядами (список / профіль).
+     * @param {'participants' | 'profile'} viewName - Назва вигляду.
+     * @param {string | null} id - ID профілю (для вигляду 'profile').
      */
     showView(viewName, id = null) {
         if (viewName === 'profile') {
             this.elements.participantsSection.classList.add('hidden');
             this.elements.profileSection.classList.remove('hidden');
             this.renderProfile(id);
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 0); // Прокрутка сторінки вгору
         } else {
             this.elements.profileSection.classList.add('hidden');
             this.elements.participantsSection.classList.remove('hidden');
@@ -244,7 +261,10 @@ const App = {
     },
     
     /**
-     * Відображення повідомлень.
+     * Відображення повідомлень для користувача.
+     * @param {'loading' | 'success' | 'error'} type - Тип повідомлення.
+     * @param {string} message - Текст повідомлення.
+     * @param {number | null} timeout - Час в мс, після якого повідомлення зникне.
      */
     showMessage(type, message, timeout = null) {
         const msgEl = this.elements.messageContainer;
@@ -266,9 +286,9 @@ const App = {
      * Створює HTML для картки учасника.
      */
     createParticipantCardHTML(p) {
-        const avatarUrl = this.getImageUrl(p.avatarUrl);
+        const avatarUrl = this.getImageUrl(null, p.name);
         return `
-            <div class="participant-card" data-id="${p.id}">
+                <div class="participant-card" data-id="${p.id}">
                 <div class="card-header">
                     <img src="${avatarUrl}" alt="Аватар ${p.name}" class="participant-avatar" loading="lazy">
                     <div class="name-role-group">
@@ -287,18 +307,19 @@ const App = {
                     </div>
                     <div class="info-item balance">
                         <span class="info-label">Баланс:</span>
-                        <span class="info-value balance-value">${p.balance} ₴</span>
+                        <span class="info-value balance-value">${p.balance}<img src="Acoin.png" width="20" height="20" class="coin-img"></img></span>
                     </div>
                 </div>
-            </div>`;
+            </div>
+            `;
     },
-
+            
 
     /**
      * Створює HTML для сторінки профілю.
      */
     createProfileHTML(p) {
-        const avatarUrl = this.getImageUrl(p.avatarUrl);
+        const avatarUrl = this.getImageUrl(p.avatarUrl); // Аватар більшого розміру
         return `
             <div class="profile-header">
                 <img src="${avatarUrl}" alt="Аватар ${p.name}" class="profile-avatar">
@@ -319,30 +340,52 @@ const App = {
                         </div>
                         <div class="info-card">
                             <div class="info-card-title">Баланс</div>
-                            <div class="info-card-value balance">${p.balance} ₴</div>
+                            <div class="info-card-value balance">${p.balance} <img src="Acoin.png" width="32" height="32" class="coin-img"></img></div>
                         </div>
+                        
+                    </div>
+                    <div class="note-card">
+                            <div class="note-card-title">Заметки</div>
+                            <div class="note-card-value">${p.note}</div>
                     </div>
                 </div>
             </div>`;
     },
 
     /**
-     * Повертає URL аватара.
+     * Повертає URL аватара.Add commentMore actions
      * Якщо URL вказано в профілі - повертає його.
      * Інакше - повертає URL за замовчуванням з конфігурації.
      */
     getImageUrl(profileUrl) {
-        // Якщо є реальний URL з таблиці (профілю), повертаємо його
-        if (profileUrl && profileUrl.startsWith('http')) {
+        // Якщо є реальний URL, повертаємо його
+        if (profileUrl && (profileUrl.startsWith('http'))) {
             return profileUrl;
         }
         
-        // В іншому випадку, повертаємо URL за замовчуванням з конфігурації
+    // В іншому випадку, повертаємо URL за замовчуванням з конфігураціїAdd commentMore actions
         return this.config.defaultImageUrl;
     }
 };
 
+
 // Запуск додатку після завантаження DOM
 document.addEventListener('DOMContentLoaded', () => {
     App.init();
+    // Додаємо Listener для інпута пошуку (припустимо, що інпут має id="searchInput")
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.trim().toLowerCase();
+            // Фільтрація профілів за ім'ям або позивним
+            const filteredProfiles = Object.values(App.state.profiles).filter(p =>
+                p.name.toLowerCase().includes(query) ||
+                p.id.toLowerCase().includes(query)
+            );
+            // Відображаємо відфільтровані профілі
+            App.elements.participantsContainer.innerHTML = filteredProfiles.length
+                ? filteredProfiles.map(p => App.createParticipantCardHTML(p)).join('')
+                : '<p class="message">Нічого не знайдено.</p>';
+        });
+    }
 });
