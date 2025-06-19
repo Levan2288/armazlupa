@@ -1,71 +1,71 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="ALIVE_Logo.png" type="image/x-icon">
-    <title>ALIVE</title>
-    <!-- Підключення шрифтів -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Підключення файлу стилів з параметром для оновлення кешу -->
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="icon" href="images/ALIVE-Logo.png" type="image/x-icon">
+    <title>ALIVE - Обучение и ивенты по Arma 3</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
     <header class="header">
-        
-        <a class="header-reference" href="#" class="logo">
-            <img class="header-logo" src="ALIVE_Logo.png" height="64" width="64" alt="ALIVE Logo" class="logo-img">
-            <h1>ALIVE</h1>
-            
-        </a>
-        
+        <div class="container">
+            <div class="header-content">
+                <a class="header-reference" href="index.html">
+                    <!-- ИСПРАВЛЕНО: Добавлен onerror для обработки ошибок загрузки -->
+                    <img class="header-logo" src="images/ALIVE-Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
+                    <h1>ALIVE</h1>
+                </a>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="index.html" class="active">Главная</a></li>
+                        <li><a href="participants.html">Участники</a></li>
+                        <li><a href="organizers.html">Организаторы</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
 
     <main class="main">
-        
         <div class="container">
-            <!-- Секція для відображення списку -->
-            <section id="participantsSection">
-                <span id="additional-info">
-                    <h2 class="main-title">Список учасників</h2>
-                    <span id="participant-quantity-section">
-                        <h2 class="main-title">Кількість учасників:</h2>
-                        <h2 class="main-title" id="participant-quantity">0</h2>
-                    </span>
-                </span>
-                <div class="controls-container">
-                    <div id="sortControls" class="sort-controls">
-                        <button class="sort-btn active" data-sort="default">За замовчуванням</button>
-                        <button class="sort-btn" data-sort="balance">За балансом</button>
-                        <button class="sort-btn" data-sort="name">За позивним</button>
-                        <button class="sort-btn" data-sort="unit">За підрозділом</button>
-                    </div>
-                    <input id="search-input"type="search" placeholder="Пошук учасників" aria-label="Пошук учасників">
-                    <button id="refreshBtn" class="btn refresh-btn">🔄 Оновити</button>
-                </div>
+            <section id="welcomeSection">
+                <h2 class="main-title">Добро пожаловать в проект ALIVE</h2>
+                <p class="subtitle">Тактическое сообщество по Arma 3. Проводим обучение военному делу и организуем захватывающие ивенты каждую субботу.</p>
                 
-                <!-- Контейнер для повідомлень -->
-                <div id="messageContainer"></div>
-
-                <!-- Сітка для відображення карток -->
-                <div id="participantsContainer" class="participants-grid" aria-live="polite">
-                    <!-- Карточки будуть завантажені динамічно -->
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>Курс молодого бойца</h3>
+                        <p>Мы проводим качественное обучение для новичков и опытных игроков, помогая освоить все аспекты военного дела в Arma 3.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Еженедельные ивенты</h3>
+                        <p>Каждую субботу мы организуем масштабные ивенты с уникальными сценариями, задачами и отыгрышем роли.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Дружное сообщество</h3>
+                        <p>Присоединяйтесь к нашему сплоченному сообществу, находите новых друзей, сокомандников и единомышленников.</p>
+                    </div>
                 </div>
-            </section>
 
-            <!-- Секція для відображення профілю -->
-            <section id="profileSection" class="hidden">
-                <button id="backBtn" class="btn back-btn">← Назад до списку</button>
-                <div id="profileContainer" class="profile">
-                    <!-- Профіль буде завантажений динамічно -->
+                <div class="cta-container">
+                    <a href="participants.html" class="btn cta-btn">Присоединиться к нам</a>
                 </div>
             </section>
         </div>
+        
+        <section class="gallery-section">
+            <div class="container">
+                <h2 class="gallery-title">Кадры с ивентов</h2>
+                <div class="image-grid">
+                    <img src="https://placehold.co/600x400/2a3b4c/c1a270?text=Arma+3+Battle" alt="Скриншот из игры Arma 3">
+                    <img src="https://placehold.co/600x400/3c4a5c/c1a270?text=Teamwork" alt="Скриншот из игры Arma 3">
+                    <img src="https://placehold.co/600x400/4a5b6c/c1a270?text=Night+Ops" alt="Скриншот из игры Arma 3">
+                </div>
+            </div>
+        </section>
+        
     </main>
-
-    <!-- Підключення файлу скриптів з параметром для оновлення кешу -->
-    <script src="script.js?v=2" defer></script>
-
 </body>
 </html>
