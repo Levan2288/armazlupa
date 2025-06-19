@@ -188,7 +188,8 @@ const App = {
             'чех': { id: 'чех', name: 'Чех', position: 'Розвідник', unit: 'Чарлі', certificate: 'Синий', balance: 0, avatarUrl: null, note: 'Відзначився в операції "Буревій"' },
             'мусон': { id: 'мусон', name: 'Мусон', position: 'Кулеметник', unit: 'Альфа', certificate: 'красный', balance: 10, avatarUrl: null, note: 'Відзначився в операції "Кулак"' },
             'ванвей': { id: 'ванвей', name: 'Ванвей', position: 'Розвідник', unit: 'Браво', certificate: 'sand', balance: 10, avatarUrl: null, note: 'Відзначився в операції "Кулак"' },
-            'смола': { id: 'смола', name: 'Смола', position: 'Командир відділення', unit: 'Барракуда', certificate: 'Песчаный', balance: 10, avatarUrl: null, note: 'Відзначився в операції "Кулак"' },
+            'смола': { id: 'смола', name: 'Смола', position: 'Командир відділення', unit: 'Дельта', certificate: 'Песчаный', balance: 10, avatarUrl: null, note: 'Відзначився в операції "Кулак"' },
+            'смола2': { id: 'смола', name: 'Смола', position: 'Командир відділення', unit: 'Барракуда', certificate: 'Песчаный', balance: 5, avatarUrl: null, note: 'Відзначився в операції "Кулак"' },
         };
     },
     
@@ -209,20 +210,34 @@ const App = {
      * Відображення списку учасників.
      */
     renderParticipants() {
-        const profilesArray = Object.values(this.state.profiles);
-        
+        const searchInput = document.getElementById('search-input');
+        let query = '';
+        if (searchInput) {
+            query = searchInput.value.trim().toLowerCase();
+        }
+
+        let profilesArray = Object.values(this.state.profiles);
+
+        // Фільтрація за пошуковим запитом
+        if (query) {
+            profilesArray = profilesArray.filter(p =>
+                p.name.toLowerCase().includes(query) ||
+                p.id.toLowerCase().includes(query)
+            );
+        }
+
         // Сортування масиву
         profilesArray.sort((a, b) => {
             switch (this.state.currentSort) {
                 case 'balance': return b.balance - a.balance;
                 case 'unit': return a.unit.localeCompare(b.unit, 'uk');
                 case 'name': return a.name.localeCompare(b.name, 'uk');
-                default: return 0; // Залишаємо порядок з таблиці
+                default: return 0;
             }
         });
-        
+
         if (profilesArray.length === 0) {
-            this.elements.participantsContainer.innerHTML = '<p class="message">Немає даних для відображення.</p>';
+            this.elements.participantsContainer.innerHTML = '<p class="message">Нічого не знайдено.</p>';
             return;
         }
 
@@ -372,20 +387,12 @@ const App = {
 // Запуск додатку після завантаження DOM
 document.addEventListener('DOMContentLoaded', () => {
     App.init();
-    // Додаємо Listener для інпута пошуку (припустимо, що інпут має id="searchInput")
+    // Додаємо Listener для інпута пошуку 
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.trim().toLowerCase();
-            // Фільтрація профілів за ім'ям або позивним
-            const filteredProfiles = Object.values(App.state.profiles).filter(p =>
-                p.name.toLowerCase().includes(query) ||
-                p.id.toLowerCase().includes(query)
-            );
-            // Відображаємо відфільтровані профілі
-            App.elements.participantsContainer.innerHTML = filteredProfiles.length
-                ? filteredProfiles.map(p => App.createParticipantCardHTML(p)).join('')
-                : '<p class="message">Нічого не знайдено.</p>';
+            App.renderParticipants(query); // Передаємо запит для фільтрації
         });
     }
 });
