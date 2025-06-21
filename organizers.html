@@ -6,52 +6,108 @@
     <title>ALIVE - Організатори</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
+    <style>Add commentMore actions
+        .organizer-section {
+            background-color: var(--surface-color);
+            padding: var(--spacing-large);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            margin-top: var(--spacing-medium);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-large);
+            align-items: flex-start;
+        }
+
+        .organizer-photo {
+            flex-basis: 250px;
+            flex-shrink: 0;
+        }
+
+        .organizer-photo img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .organizer-info {
+            flex-basis: 0;
+            flex-grow: 1;
+            min-width: 300px;
+        }
+
+        .organizer-info h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-small);
+        }
+        
+        .organizer-info .role {
+            font-size: 1.2rem;
+            color: var(--text-color-secondary);
+            margin-bottom: var(--spacing-medium);
+            font-weight: 600;
+        }
+
+        .organizer-info p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-medium);
+        }
+
+        .info-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: var(--spacing-medium);
+        }
+        
+        .info-list li {
+            font-size: 1rem;
+            margin-bottom: var(--spacing-small);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .info-list li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .info-list li strong {
+            color: var(--text-color-dark);
+        }
+
+        @media (max-width: 768px) {
+            .organizer-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .organizer-info h2 {
+                font-size: 2rem;
+            }
+             .info-list li {
+                padding-left: 0;
+                text-align: left;
+            }
+            .info-list li::before {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Затемнення фону -->
-    <div class="overlay"></div>
-
-    <!-- Бічне меню (сайдбар) -->
-    <nav class="sidebar">
-        <button class="close-btn" aria-label="Закрити меню">&times;</button>
-        <ul>
-            <li><a href="index.html">Головна</a></li>
-            <li><a href="participants.html">Учасники</a></li>
-            <li><a href="organizers.html" class="active">Організатори</a></li>
-            <li><a href="price.html">Прайс-лист</a></li>
-        </ul>
-    </nav>
-
-    <header class="header">
+     <header class="header">Add commentMore actions
         <div class="container">
             <div class="header-content">
-                <a class="header-reference" href="index.html">
-                    <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
+                 <a class="header-reference"  href="index.html" >
+                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">Add commentMore actions
                     <h1>ALIVE</h1>
                 </a>
-                <!-- Кнопка "Гамбургер" для відкриття меню -->
-                <button class="mobile-menu-toggle" aria-label="Відкрити меню">☰</button>
-                <!-- Стандартне меню для десктопів -->
-                <nav class="nav-menu-desktop">
-                    <ul>
-                         <li><a href="index.html">Головна</a></li>
-                         <li><a href="participants.html">Учасники</a></li>
-                         <li><a href="organizers.html" class="active">Організатори</a></li>
-                         <li><a href="price.html">Прайс-лист</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="main">
-        <div class="container">
-            <h2 class="main-title">Організатори</h2>
-            <p class="subtitle">Сторінка в розробці.</p>
-        </div>
-    </main>
-
-    <script src="js/mobile-menu.js" defer></script>
-</body>
-</html>
+                <nav class="nav-menu">
+                    
