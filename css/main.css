@@ -2,7 +2,7 @@
     --primary-color: #c1a270;
     --primary-color-dark: #b39561;
     --text-color-light: #ffffff;
-    --text-color-dark: #c1a270;
+    --text-color-dark: #333;
     --text-color-secondary: #7f8c9a;
     --background-color: #f4f5f7;
     --surface-color: #ffffff;
@@ -24,6 +24,7 @@
     --transition-speed: 0.3s;
 }
 
+/* Загальні стилі */
 * {
     margin: 0;
     padding: 0;
@@ -49,14 +50,15 @@ body {
     padding: var(--spacing-base) 0;
     border-bottom: 1px solid var(--border-color);
     box-shadow: var(--shadow-soft);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: var(--spacing-base);
 }
 
 .header-reference {
@@ -78,14 +80,14 @@ body {
     color: var(--primary-color);
 }
 
-/* Navigation Menu */
-.nav-menu ul {
+/* Десктопне меню */
+.nav-menu-desktop ul {
     list-style: none;
     display: flex;
     gap: var(--spacing-medium);
 }
 
-.nav-menu a {
+.nav-menu-desktop a {
     text-decoration: none;
     color: var(--text-color-secondary);
     font-weight: 600;
@@ -95,22 +97,12 @@ body {
     transition: all var(--transition-speed) ease;
 }
 
-.nav-menu a:hover, .nav-menu a.active {
+.nav-menu-desktop a:hover, .nav-menu-desktop a.active {
     color: var(--text-color-dark);
     background-color: #f0f0f0;
 }
 
-.mobile-menu-toggle {
-    display: none; /* Скрыто по умолчанию */
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--text-color-dark);
-}
-
-
-/* Main Content */
+/* Основний контент */
 .main {
     padding: var(--spacing-large) 0;
 }
@@ -136,7 +128,7 @@ body {
     margin-right: auto;
 }
 
-/* Feature Cards */
+/* Картки переваг */
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -170,7 +162,7 @@ body {
     color: var(--text-color-secondary);
 }
 
-/* Gallery Section */
+/* Галерея */
 .gallery-section {
     text-align: center;
     padding: var(--spacing-large) 0;
@@ -208,8 +200,7 @@ body {
     box-shadow: var(--shadow-medium);
 }
 
-
-/* Button */
+/* Кнопки */
 .cta-container {
     margin-top: var(--spacing-large);
 }
@@ -235,80 +226,6 @@ body {
 .cta-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-    .header-content {
-        flex-wrap: nowrap; /* Предотвращаем перенос логотипа и кнопки меню */
-    }
-    .header h1 {
-        font-size: 1.8rem;
-    }
-    .main-title {
-        font-size: 2.2rem;
-    }
-
-    .mobile-menu-toggle {
-        display: block; /* Показываем кнопку "гамбургер" */
-    }
-
-    .nav-menu {
-        display: none; /* Скрываем навигационное меню */
-        width: 100%;
-        order: 3; /* Чтобы меню было под лого и кнопкой */
-    }
-
-    .nav-menu.active {
-        display: block; /* Показываем меню при клике */
-    }
-
-    .nav-menu ul {
-        flex-direction: column;
-        gap: var(--spacing-base);
-        align-items: center;
-        padding: var(--spacing-medium) 0;
-    }
-
-    /* --- СТИЛІ ДЛЯ МОБІЛЬНОГО МЕНЮ --- */
-
-/* Кнопка "гамбургер" (за замовчуванням прихована) */
-.mobile-menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--text-color-dark);
-}
-
-/* Адаптивність для екранів шириною до 768px */
-@media (max-width: 768px) {
-    
-    /* Показуємо кнопку "гамбургер" */
-    .mobile-menu-toggle {
-        display: block;
-    }
-
-    /* Приховуємо звичайне меню */
-    .nav-menu {
-        display: none;
-        width: 100%;
-        order: 3; /* Розміщуємо меню під логотипом та кнопкою */
-    }
-
-    /* Стиль для активного (відкритого) меню */
-    .nav-menu.active {
-        display: block;
-    }
-
-    /* Робимо пункти меню вертикальними */
-    .nav-menu ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.5rem 0;
-    }
 }
 
 /* --- СТИЛІ ДЛЯ БІЧНОГО МЕНЮ --- */
@@ -344,6 +261,8 @@ body {
     box-shadow: var(--shadow-medium);
     transition: left 0.3s ease;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar.active {
@@ -370,7 +289,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.sidebar ul a:hover {
+.sidebar ul a:hover, .sidebar ul a.active {
     background-color: #f0f0f0;
 }
 
@@ -383,6 +302,7 @@ body {
     border: none;
     font-size: 2.5rem;
     cursor: pointer;
+    line-height: 1;
     color: var(--text-color-secondary);
 }
 
@@ -396,8 +316,13 @@ body {
     color: var(--text-color-dark);
 }
 
-/* Адаптивність для екранів шириною до 768px */
+
+/* Адаптивність */
 @media (max-width: 768px) {
+    .main-title {
+        font-size: 2.2rem;
+    }
+    
     /* Показуємо кнопку "гамбургер" */
     .mobile-menu-toggle {
         display: block;
@@ -407,5 +332,4 @@ body {
     .nav-menu-desktop {
         display: none;
     }
-}
 }

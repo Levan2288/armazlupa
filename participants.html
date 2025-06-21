@@ -1,33 +1,88 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
+    <title>ALIVE - Учасники</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/participants.css">
 </head>
 <body>
 
+    <!-- Затемнення фону -->
+    <div class="overlay"></div>
+
+    <!-- Бічне меню (сайдбар) -->
+    <nav class="sidebar">
+        <button class="close-btn" aria-label="Закрити меню">&times;</button>
+        <ul>
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="participants.html" class="active">Учасники</a></li>
+            <li><a href="organizers.html">Організатори</a></li>
+            <li><a href="price.html">Прайс-лист</a></li>
+        </ul>
+    </nav>
+
     <header class="header">
         <div class="container">
             <div class="header-content">
                 <a class="header-reference" href="index.html">
-                    <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" ...>
+                    <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
                 </a>
+                <!-- Кнопка "Гамбургер" для відкриття меню -->
                 <button class="mobile-menu-toggle" aria-label="Відкрити меню">☰</button>
-                <nav class="nav-menu">
+                <!-- Стандартне меню для десктопів -->
+                <nav class="nav-menu-desktop">
                     <ul>
-                        <li><a href="index.html">Головна</a></li>
-                        <li><a href="participants.html" class="active">Учасники</a></li>
-                        <li><a href="organizers.html">Організатори</a></li>
-                        <li><a href="price.html">Прайс-лист</a></li>
+                         <li><a href="index.html">Головна</a></li>
+                         <li><a href="participants.html" class="active">Учасники</a></li>
+                         <li><a href="organizers.html">Організатори</a></li>
+                         <li><a href="price.html">Прайс-лист</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
 
+    <main class="main">
+        <div class="container">
+            <section id="participantsSection">
+                <span id="additional-info">
+                    <h2 class="main-title">Список учасників</h2>
+                    <span id="participant-quantity-section">
+                        <h2 class="main-title">Кількість учасників:</h2>
+                        <h2 class="main-title" id="participant-quantity">0</h2>
+                    </span>
+                </span>
+                <div class="controls-container">
+                    <div id="sortControls" class="sort-controls">
+                        <button class="sort-btn active" data-sort="default">За замовчуванням</button>
+                        <button class="sort-btn" data-sort="balance">За балансом</button>
+                        <button class="sort-btn" data-sort="name">За позивним</button>
+                        <button class="sort-btn" data-sort="unit">За підрозділом</button>
+                    </div>
+                    <input id="search-input"type="search" placeholder="Пошук учасників" aria-label="Пошук учасників">
+                    <button id="refreshBtn" class="btn refresh-btn">🔄 Оновити</button>
+                </div>
+                
+                <div id="messageContainer"></div>
+
+                <div id="participantsContainer" class="participants-grid" aria-live="polite">
+                </div>
+            </section>
+
+            <section id="profileSection" class="hidden">
+                <button id="backBtn" class="btn back-btn">← Назад до списку</button>
+                <div id="profileContainer" class="profile">
+                </div>
+            </section>
+        </div>
+    </main>
+    
     <script src="js/participants.js" defer></script>
     <script src="js/mobile-menu.js" defer></script>
-
 </body>
 </html>

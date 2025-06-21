@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
-    <title>ALIVE - Обучение и ивенты по Arma 3</title>
+    <title>ALIVE - Головна</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+
+    <!-- Затемнення фону -->
+    <div class="overlay"></div>
+
+    <!-- Бічне меню (сайдбар) -->
+    <nav class="sidebar">
+        <button class="close-btn" aria-label="Закрити меню">&times;</button>
+        <ul>
+            <li><a href="index.html" class="active">Головна</a></li>
+            <li><a href="participants.html">Учасники</a></li>
+            <li><a href="organizers.html">Організатори</a></li>
+            <li><a href="price.html">Прайс-лист</a></li>
+        </ul>
+    </nav>
 
     <header class="header">
         <div class="container">
@@ -16,12 +31,15 @@
                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
                 </a>
-                <nav class="nav-menu">
+                <!-- Кнопка "Гамбургер" для відкриття меню -->
+                <button class="mobile-menu-toggle" aria-label="Відкрити меню">☰</button>
+                <!-- Стандартне меню для десктопів -->
+                <nav class="nav-menu-desktop">
                     <ul>
-                        <li><a href="index.html" class="active">Главная</a></li>
-                        <li><a href="participants.html">Участники</a></li>
-                        <li><a href="organizers.html">Организаторы</a></li>
-                        <li><a href="price.html">Прайс-лист</a></li>
+                         <li><a href="index.html" class="active">Головна</a></li>
+                         <li><a href="participants.html">Учасники</a></li>
+                         <li><a href="organizers.html">Організатори</a></li>
+                         <li><a href="price.html">Прайс-лист</a></li>
                     </ul>
                 </nav>
             </div>
@@ -31,43 +49,39 @@
     <main class="main">
         <div class="container">
             <section id="welcomeSection">
-                <h2 class="main-title">Добро пожаловать в проект ALIVE</h2>
-                <p class="subtitle">Тактическое сообщество по Arma 3. Проводим обучение военному делу и организуем захватывающие ивенты каждую субботу.</p>
-                
-                <div class="features">
-                    <div class="feature-card">
-                        <h3>Курс молодого бойца</h3>
-                        <p>Мы проводим качественное обучение для новичков и опытных игроков, помогая освоить все аспекты военного дела в Arma 3.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Еженедельные ивенты</h3>
-                        <p>Каждую субботу мы организуем масштабные ивенты с уникальными сценариями, задачами и отыгрышем роли.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Дружное сообщество</h3>
-                        <p>Присоединяйтесь к нашему сплоченному сообществу, находите новых друзей, сокомандников и единомышленников.</p>
-                    </div>
-                </div>
-
+                <h2 class="main-title">Ласкаво просимо до ALIVE</h2>
+                <p class="subtitle">Ваша спільнота для організації, участі та відстеження подій.</p>
                 <div class="cta-container">
-                    <a href="https://t.me/Alive_kurs" class="btn cta-btn">Присоединиться к нам</a>
+                    <a href="participants.html" class="btn cta-btn">Переглянути учасників</a>
+                </div>
+            </section>
+
+            <section class="features">
+                <div class="feature-card">
+                    <h3>Для учасників</h3>
+                    <p>Переглядайте свій профіль, баланс та іншу важливу інформацію в одному місці.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Для організаторів</h3>
+                    <p>Керуйте учасниками, подіями та фінансами з легкістю та прозорістю.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Завжди на зв'язку</h3>
+                    <p>Залишайтеся в курсі останніх новин та оновлень у вашій спільноті.</p>
+                </div>
+            </section>
+            
+            <section class="gallery-section">
+                <h2 class="gallery-title">Галерея</h2>
+                <div class="image-grid">
+                    <img src="images/photo_2025-05-25_10-17-57.jpg" alt="[Зображення з галереї 1]" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+1';">
+                    <img src="images/photo_2025-05-25_10-18-02.jpg" alt="[Зображення з галереї 2]" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+2';">
+                    <img src="images/photo_2025-05-25_10-18-04.jpg" alt="[Зображення з галереї 3]" onerror="this.onerror=null;this.src='https://placehold.co/400x300/cccccc/ffffff?text=Image+3';">
                 </div>
             </section>
         </div>
-        
-        <section class="gallery-section">
-            <div class="container">
-                <h2 class="gallery-title">Кадры с ивентов</h2>
-                <div class="image-grid">
-                    <img src="https://i.pinimg.com/736x/6a/4c/6d/6a4c6ddf038d262595473effcc11a3f3.jpg" alt="Скриншот из игры Arma 3">
-                    <img src="https://i.pinimg.com/736x/d5/aa/0e/d5aa0e091715eeeba58e69b0b8642b1c.jpg" alt="Скриншот из игры Arma 3">
-                    <img src="https://i.pinimg.com/736x/43/57/f6/4357f6ba44faec2f8845a8ed97f71d27.jpg" alt="Скриншот из игры Arma 3">
-                </div>
-            </div>
-        </section>
-        
     </main>
 
-    <script src="js/main.js"></script>
+    <script src="js/mobile-menu.js" defer></script>
 </body>
 </html>
