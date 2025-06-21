@@ -269,4 +269,45 @@ body {
         align-items: center;
         padding: var(--spacing-medium) 0;
     }
+
+    /* --- СТИЛІ ДЛЯ МОБІЛЬНОГО МЕНЮ --- */
+
+/* Кнопка "гамбургер" (за замовчуванням прихована) */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-color-dark);
+}
+
+/* Адаптивність для екранів шириною до 768px */
+@media (max-width: 768px) {
+    
+    /* Показуємо кнопку "гамбургер" */
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    /* Приховуємо звичайне меню */
+    .nav-menu {
+        display: none;
+        width: 100%;
+        order: 3; /* Розміщуємо меню під логотипом та кнопкою */
+    }
+
+    /* Стиль для активного (відкритого) меню */
+    .nav-menu.active {
+        display: block;
+    }
+
+    /* Робимо пункти меню вертикальними */
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem 0;
+    }
+}
 }

@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
+            // При кліку на кнопку додаємо/видаляємо клас 'active' у меню,
+            // що робить його видимим або прихованим згідно зі стилями в CSS.
             navMenu.classList.toggle('active');
         });
     }
