@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALIVE - Організатори</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
+    <title>ALIVE - Организаторы</title>
     <link rel="stylesheet" href="css/main.css">
-    <style>Add commentMore actions
+    <style>
         .organizer-section {
             background-color: var(--surface-color);
             padding: var(--spacing-large);
@@ -102,46 +102,51 @@
     </style>
 </head>
 <body>
-        <!-- Затемнення фону -->
-    <div class="overlay"></div>Add commentMore actions
-
-    <!-- Бічне меню (сайдбар) -->
-    <nav class="sidebar">
-        <button class="close-btn" aria-label="Закрити меню">&times;</button>
-        <ul>
-            <li><a href="index.html">Головна</a></li>
-            <li><a href="participants.html">Учасники</a></li>
-            <li><a href="organizers.html" class="active">Організатори</a></li>
-            <li><a href="price.html">Прайс-лист</a></li>
-        </ul>
-    </nav>
 
     <header class="header">
         <div class="container">
             <div class="header-content">
-                  <a class="header-reference" href="index.html">Add commentMore actions
+                <a class="header-reference"  href="index.html" >
                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
                 </a>
-                   <!-- Кнопка "Гамбургер" для відкриття меню -->Add commentMore actions
-                <button class="mobile-menu-toggle" aria-label="Відкрити меню">☰</button>
-                <!-- Стандартне меню для десктопів -->
-                <nav class="nav-menu-desktop">
+                <nav class="nav-menu">
                     <ul>
-                           <li><a href="index.html">Головна</a></li>Add commentMore actions
-                         <li><a href="participants.html">Учасники</a></li>
-                         <li><a href="organizers.html" class="active">Організатори</a></li>
-                         <li><a href="price.html">Прайс-лист</a></li>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="participants.html">Участники</a></li>
+                        <li><a href="organizers.html" class="active">Организаторы</a></li>
+                        <li><a href="price.html">Прайс-лист</a></li>
                     </ul>
                 </nav>
             </div>
-             <main class="main">Add commentMore actions
+        </div>
+    </header>
+
+    <main class="main">
         <div class="container">
-            <h2 class="main-title">Організатори</h2>Add commentMore actions
-            <p class="subtitle">Сторінка в розробці.</p>
+            <section class="organizer-section">
+                <div class="organizer-photo">
+                    <img src="images/photo_2025-05-25_10-17-57.jpg" alt="Фото інструктора">
+                </div>
+                <div class="organizer-info">
+                    <h2>Сержант</h2>
+                    <p class="role">Головний інструктор - засновник проекту</p>
+                    <p>
+                        Колишній військовослужбовець з бойовим досвідом зони ООС та повномасштабного вторгнення.
+                    </p>
+                    <ul class="info-list">
+                        <li><strong>Звання:</strong> Сержант</li>
+                        <li><strong>Роки служби:</strong> 2020-2024</li>
+                        <li><strong>Напрямки служби:</strong></li>
+                        <ul style="list-style-type: circle; padding-left: 2rem; margin-top: 0.5rem;">
+                             <li>ООС - Донецький напрямок</li>
+                             <li>Повномасштабне вторгнення - Київський та Донецький напрямки</li>
+                        </ul>
+                    </ul>
+                </div>
+            </section>
         </div>
     </main>
 
-    <script src="js/mobile-menu.js" defer></script>
 </body>
 </html>
