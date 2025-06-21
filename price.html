@@ -3,42 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
     <title>ALIVE - Прайс-лист</title>
+    <!-- Підключення шрифтів -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Підключення файлу стилів з параметром для оновлення кешу -->
     <link rel="stylesheet" href="css/main.css">
+    <style>
+        .placeholder-content {
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+        .placeholder-content h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .placeholder-content p {
+            font-size: 1.2rem;
+            color: #5c6a79;
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Затемнення фону -->
-    <div class="overlay"></div>
-
-    <!-- Бічне меню (сайдбар) -->
-    <nav class="sidebar">
-        <button class="close-btn" aria-label="Закрити меню">&times;</button>
-        <ul>
-            <li><a href="index.html">Головна</a></li>
-            <li><a href="participants.html">Учасники</a></li>
-            <li><a href="organizers.html">Організатори</a></li>
-            <li><a href="price.html" class="active">Прайс-лист</a></li>
-        </ul>
-    </nav>
-
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a class="header-reference" href="index.html">
+                <a class="header-reference" href="">
+                    <!-- ИСПРАВЛЕНО: Добавлен onerror для обработки ошибок загрузки -->
                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
                 </a>
-                <!-- Кнопка "Гамбургер" для відкриття меню -->
-                <button class="mobile-menu-toggle" aria-label="Відкрити меню">☰</button>
-                <!-- Стандартне меню для десктопів -->
-                <nav class="nav-menu-desktop">
+                <nav class="nav-menu">
                     <ul>
-                         <li><a href="index.html">Головна</a></li>
-                         <li><a href="participants.html">Учасники</a></li>
-                         <li><a href="organizers.html">Організатори</a></li>
-                         <li><a href="price.html" class="active">Прайс-лист</a></li>
+                        <li><a href="index.html">Главная WIP</a></li>
+                        <li><a href="participants.html">Участники</a></li>
+                        <li><a href="organizers.html">Организаторы WIP</a></li>
+                        <li><a href="price.html" class="active">Прайс-лист WIP</a></li>
                     </ul>
                 </nav>
             </div>
@@ -47,39 +48,11 @@
 
     <main class="main">
         <div class="container">
-            <section class="price-section">
-                <h2 class="price-title">ALIVE sub.</h2>
-                <p class="price-subtitle">Підписка оплачується раз на місяць по курсу 40грн/$</p>
-                <div class="price-grid">
-                    <div class="price-card">
-                        <h3>15$ <span style="font-size: 1rem; color: var(--text-color-secondary);">/ місяць</span></h3>
-                        <ul>
-                            <li>Доступ до практичних занять</li>
-                        </ul>
-                    </div>
-                    <div class="price-card">
-                        <h3>20$ <span style="font-size: 1rem; color: var(--text-color-secondary);">/ місяць</span></h3>
-                        <ul>
-                            <li>Доступ до практичних занять</li>
-                            <li>Доступ до PVE/PVP ігор</li>
-                        </ul>
-                    </div>
-                    <div class="price-card">
-                        <h3>25$ <span style="font-size: 1rem; color: var(--text-color-secondary);">/ місяць</span></h3>
-                        <ul>
-                            <li>Доступ до практичних занять</li>
-                            <li>Доступ до PVE/PVP ігор</li>
-                            <li>Доступ до любих курсів на проекті у наявності</li>
-                        </ul>
-                    </div>
-                </div>
-                 <div class="cta-container">
-                    <a href="https://t.me/Alive_kurs" class="btn cta-btn">Написати в Telegram</a>
-                </div>
-            </section>
+            <div class="placeholder-content">
+                <h2>Прайс-лист</h2>
+                <p>Этот раздел находится в разработке. Загляните позже!</p>
+            </div>
         </div>
     </main>
-
-    <script src="js/mobile-menu.js" defer></script>
 </body>
 </html>

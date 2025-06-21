@@ -4,43 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
-    <title>ALIVE - Учасники</title>
+    <title>ALIVE</title>
+    <!-- Підключення шрифтів -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/participants.css">
+    <!-- Підключення файлу стилів з параметром для оновлення кешу -->
+    <link rel="stylesheet" href="css/participants.css?v=2">
 </head>
 <body>
 
-    <!-- Затемнення фону -->
-    <div class="overlay"></div>
-
-    <!-- Бічне меню (сайдбар) -->
-    <nav class="sidebar">
-        <button class="close-btn" aria-label="Закрити меню">&times;</button>
-        <ul>
-            <li><a href="index.html">Головна</a></li>
-            <li><a href="participants.html" class="active">Учасники</a></li>
-            <li><a href="organizers.html">Організатори</a></li>
-            <li><a href="price.html">Прайс-лист</a></li>
-        </ul>
-    </nav>
-
     <header class="header">
+        
         <div class="container">
             <div class="header-content">
+                <!-- ИСПРАВЛЕНО: ссылка на главную страницу -->
                 <a class="header-reference" href="index.html">
                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
                 </a>
-                <!-- Кнопка "Гамбургер" для відкриття меню -->
-                <button class="mobile-menu-toggle" aria-label="Відкрити меню">☰</button>
-                <!-- Стандартне меню для десктопів -->
-                <nav class="nav-menu-desktop">
+                <nav class="nav-menu">
                     <ul>
-                         <li><a href="index.html">Головна</a></li>
-                         <li><a href="participants.html" class="active">Учасники</a></li>
-                         <li><a href="organizers.html">Організатори</a></li>
-                         <li><a href="price.html">Прайс-лист</a></li>
+                        <!-- ИСПРАВЛЕНО: ссылка на главную страницу -->
+                        <li><a href="index.html" >Главная WiP</a></li>
+                        <li><a href="participants.html" class="active">Участники</a></li>
+                        <li><a href="organizers.html">Организаторы</a></li>
                     </ul>
                 </nav>
             </div>
@@ -48,7 +34,9 @@
     </header>
 
     <main class="main">
+        
         <div class="container">
+            <!-- Секція для відображення списку -->
             <section id="participantsSection">
                 <span id="additional-info">
                     <h2 class="main-title">Список учасників</h2>
@@ -68,21 +56,27 @@
                     <button id="refreshBtn" class="btn refresh-btn">🔄 Оновити</button>
                 </div>
                 
+                <!-- Контейнер для повідомлень -->
                 <div id="messageContainer"></div>
 
+                <!-- Сітка для відображення карток -->
                 <div id="participantsContainer" class="participants-grid" aria-live="polite">
+                    <!-- Карточки будуть завантажені динамічно -->
                 </div>
             </section>
 
+            <!-- Секція для відображення профілю -->
             <section id="profileSection" class="hidden">
                 <button id="backBtn" class="btn back-btn">← Назад до списку</button>
                 <div id="profileContainer" class="profile">
+                    <!-- Профіль буде завантажений динамічно -->
                 </div>
             </section>
         </div>
     </main>
-    
+
+    <!-- Підключення файлу скриптів з параметром для оновлення кешу -->
     <script src="js/participants.js" defer></script>
-    <script src="js/mobile-menu.js" defer></script>
+
 </body>
 </html>
