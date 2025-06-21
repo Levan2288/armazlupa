@@ -272,14 +272,14 @@ body {
 }
 
 .pricing-title {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: var(--spacing-base);
 }
 
 .pricing-price {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--text-color-dark);
     margin-bottom: var(--spacing-base);
@@ -331,6 +331,12 @@ body {
     .nav-menu ul {
         gap: var(--spacing-base);
     }
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
     .pricing-grid {
         grid-template-columns: 1fr;
     }
