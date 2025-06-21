@@ -5,23 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
     <title>ALIVE - Прайс-лист</title>
-    <!-- Підключення шрифтів -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Підключення файлу стилів з параметром для оновлення кешу -->
     <link rel="stylesheet" href="css/main.css">
     <style>
-        .placeholder-content {
+        .price-section {
             text-align: center;
-            padding: 5rem 1rem;
+            padding: var(--spacing-large) 0;
         }
-        .placeholder-content h2 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 1rem;
+        .price-title {
+            font-size: var(--font-size-h2);
+            font-weight: 700;
+            margin-bottom: var(--spacing-base);
         }
-        .placeholder-content p {
-            font-size: 1.2rem;
-            color: #5c6a79;
+        .price-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-color-secondary);
+            margin-bottom: var(--spacing-large);
+        }
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-medium);
+            margin-bottom: var(--spacing-large);
+            align-items: start;
+        }
+        .price-card {
+            background: var(--surface-color);
+            padding: var(--spacing-medium);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            text-align: left;
+            border-top: 5px solid var(--primary-color);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+        .price-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-medium);
+            text-align: center;
+        }
+        .price-card ul {
+            list-style: none;
+            padding-left: 0;
+            min-height: 150px;
+        }
+        .price-card ul li {
+            margin-bottom: var(--spacing-base);
+            position: relative;
+            padding-left: 1.5rem;
+            font-size: 1.05rem;
+        }
+        .price-card ul li::before {
+            content: '✓';
+            color: #2ecc71;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .cta-container {
+            margin-top: var(--spacing-medium);
         }
     </style>
 </head>
@@ -29,17 +76,16 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a class="header-reference" href="">
-                    <!-- ИСПРАВЛЕНО: Добавлен onerror для обработки ошибок загрузки -->
+                <a class="header-reference" href="index.html">
                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
                 </a>
                 <nav class="nav-menu">
                     <ul>
-                        <li><a href="index.html">Главная WIP</a></li>
+                        <li><a href="index.html">Главная</a></li>
                         <li><a href="participants.html">Участники</a></li>
-                        <li><a href="organizers.html">Организаторы WIP</a></li>
-                        <li><a href="price.html" class="active">Прайс-лист WIP</a></li>
+                        <li><a href="organizers.html">Организаторы</a></li>
+                        <li><a href="price.html" class="active">Прайс-лист</a></li>
                     </ul>
                 </nav>
             </div>
@@ -48,10 +94,36 @@
 
     <main class="main">
         <div class="container">
-            <div class="placeholder-content">
-                <h2>Прайс-лист</h2>
-                <p>Этот раздел находится в разработке. Загляните позже!</p>
-            </div>
+            <section class="price-section">
+                <h2 class="price-title">ALIVE sub.</h2>
+                <p class="price-subtitle">Підписка оплачується раз на місяць по курсу 40грн/$</p>
+                <div class="price-grid">
+                    <div class="price-card">
+                        <h3>15$ <span style="font-size: 1rem; color: var(--text-color-secondary);">/ місяць</span></h3>
+                        <ul>
+                            <li>Доступ до практичних занять</li>
+                        </ul>
+                    </div>
+                    <div class="price-card">
+                        <h3>20$ <span style="font-size: 1rem; color: var(--text-color-secondary);">/ місяць</span></h3>
+                        <ul>
+                            <li>Доступ до практичних занять</li>
+                            <li>Доступ до PVE/PVP ігор</li>
+                        </ul>
+                    </div>
+                    <div class="price-card">
+                        <h3>25$ <span style="font-size: 1rem; color: var(--text-color-secondary);">/ місяць</span></h3>
+                        <ul>
+                            <li>Доступ до практичних занять</li>
+                            <li>Доступ до PVE/PVP ігор</li>
+                            <li>Доступ до любих курсів на проекті у наявності</li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="cta-container">
+                    <a href="https://t.me/Alive_kurs" class="btn cta-btn">Написати в Telegram</a>
+                </div>
+            </section>
         </div>
     </main>
 </body>

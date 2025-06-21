@@ -7,7 +7,6 @@
     <title>ALIVE - Организаторы</title>
     <link rel="stylesheet" href="css/main.css">
     <style>
-        /* Стилі для секції організатора */
         .organizer-section {
             background-color: var(--surface-color);
             padding: var(--spacing-large);
@@ -21,7 +20,7 @@
         }
 
         .organizer-photo {
-            flex-basis: 250px; /* Фіксована ширина для фото */
+            flex-basis: 250px;
             flex-shrink: 0;
         }
 
@@ -33,8 +32,8 @@
 
         .organizer-info {
             flex-basis: 0;
-            flex-grow: 1; /* Займає решту простору */
-            min-width: 300px; /* Мінімальна ширина для переносу */
+            flex-grow: 1;
+            min-width: 300px;
         }
 
         .organizer-info h2 {
@@ -71,7 +70,7 @@
         }
 
         .info-list li::before {
-            content: '›'; /* Маркер списку */
+            content: '›';
             position: absolute;
             left: 0;
             font-weight: 700;
@@ -83,7 +82,6 @@
             color: var(--text-color-dark);
         }
 
-        /* Адаптивність */
         @media (max-width: 768px) {
             .organizer-section {
                 flex-direction: column;
@@ -114,9 +112,10 @@
                 </a>
                 <nav class="nav-menu">
                     <ul>
-                        <li><a href="index.html">Главная WiP</a></li>
+                        <li><a href="index.html">Главная</a></li>
                         <li><a href="participants.html">Участники</a></li>
                         <li><a href="organizers.html" class="active">Организаторы</a></li>
+                        <li><a href="price.html">Прайс-лист</a></li>
                     </ul>
                 </nav>
             </div>
@@ -125,10 +124,8 @@
 
     <main class="main">
         <div class="container">
-            <!-- Секція з інформацією про організатора -->
             <section class="organizer-section">
                 <div class="organizer-photo">
-                    <!-- Місце для фотографії. Замініть src на шлях до вашого зображення -->
                     <img src="images/photo_2025-05-25_10-17-57.jpg" alt="Фото інструктора">
                 </div>
                 <div class="organizer-info">
