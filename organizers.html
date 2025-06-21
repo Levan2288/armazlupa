@@ -4,102 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
-    <title>ALIVE - Организаторы</title>
+    <title>ALIVE - Організатори</title>
     <link rel="stylesheet" href="css/main.css">
     <style>
-        /* Стилі для секції організатора */
-        .organizer-section {
-            background-color: var(--surface-color);
-            padding: var(--spacing-large);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
-            margin-top: var(--spacing-medium);
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-large);
-            align-items: flex-start;
+        .placeholder-content {
+            text-align: center;
+            padding: 5rem 1rem;
         }
-
-        .organizer-photo {
-            flex-basis: 250px; /* Фіксована ширина для фото */
-            flex-shrink: 0;
-        }
-
-        .organizer-photo img {
-            width: 100%;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .organizer-info {
-            flex-basis: 0;
-            flex-grow: 1; /* Займає решту простору */
-            min-width: 300px; /* Мінімальна ширина для переносу */
-        }
-
-        .organizer-info h2 {
+        .placeholder-content h2 {
             font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: var(--spacing-small);
+            color: #333;
+            margin-bottom: 1rem;
         }
-        
-        .organizer-info .role {
+        .placeholder-content p {
             font-size: 1.2rem;
-            color: var(--text-color-secondary);
-            margin-bottom: var(--spacing-medium);
-            font-weight: 600;
-        }
-
-        .organizer-info p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: var(--spacing-medium);
-        }
-
-        .info-list {
-            list-style: none;
-            padding-left: 0;
-            margin-top: var(--spacing-medium);
-        }
-        
-        .info-list li {
-            font-size: 1rem;
-            margin-bottom: var(--spacing-small);
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .info-list li::before {
-            content: '›'; /* Маркер списку */
-            position: absolute;
-            left: 0;
-            font-weight: 700;
-            color: var(--primary-color);
-            font-size: 1.2rem;
-        }
-        
-        .info-list li strong {
-            color: var(--text-color-dark);
-        }
-
-        /* Адаптивність */
-        @media (max-width: 768px) {
-            .organizer-section {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .organizer-info h2 {
-                font-size: 2rem;
-            }
-             .info-list li {
-                padding-left: 0;
-                text-align: left;
-            }
-            .info-list li::before {
-                display: none;
-            }
+            color: #5c6a79;
         }
     </style>
 </head>
@@ -108,15 +27,17 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a class="header-reference"  href="index.html" >
+                <a class="header-reference"  href="" >
+                    <!-- ИСПРАВЛЕНО: Добавлен onerror для обработки ошибок загрузки -->
                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
                 </a>
                 <nav class="nav-menu">
                     <ul>
-                        <li><a href="index.html">Главная WiP</a></li>
+                        <li><a href="index.html">Главная WIP</a></li>
                         <li><a href="participants.html">Участники</a></li>
-                        <li><a href="organizers.html" class="active">Организаторы</a></li>
+                        <li><a href="organizers.html" class="active">Организаторы WIP</a></li>
+                        <li><a href="price.html">Прайс-лист WIP</a></li>
                     </ul>
                 </nav>
             </div>
@@ -125,29 +46,10 @@
 
     <main class="main">
         <div class="container">
-            <!-- Секція з інформацією про організатора -->
-            <section class="organizer-section">
-                <div class="organizer-photo">
-                    <!-- Місце для фотографії. Замініть src на шлях до вашого зображення -->
-                    <img src="images/photo_2025-05-25_10-17-57.jpg" alt="Фото інструктора">
-                </div>
-                <div class="organizer-info">
-                    <h2>Сержант</h2>
-                    <p class="role">Головний інструктор - засновник проекту</p>
-                    <p>
-                        Колишній військовослужбовець з бойовим досвідом зони ООС та повномасштабного вторгнення.
-                    </p>
-                    <ul class="info-list">
-                        <li><strong>Звання:</strong> Сержант</li>
-                        <li><strong>Роки служби:</strong> 2020-2024</li>
-                        <li><strong>Напрямки служби:</strong></li>
-                        <ul style="list-style-type: circle; padding-left: 2rem; margin-top: 0.5rem;">
-                             <li>ООС - Донецький напрямок</li>
-                             <li>Повномасштабне вторгнення - Київський та Донецький напрямки</li>
-                        </ul>
-                    </ul>
-                </div>
-            </section>
+            <div class="placeholder-content">
+                <h2>Страница организаторов</h2>
+                <p>Этот раздел находится в разработке. Загляните позже!</p>
+            </div>
         </div>
     </main>
 
