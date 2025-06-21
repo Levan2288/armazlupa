@@ -1,12 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    const closeBtn = document.querySelector('.close-btn');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay');
 
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', () => {
-            // При кліку на кнопку додаємо/видаляємо клас 'active' у меню,
-            // що робить його видимим або прихованим згідно зі стилями в CSS.
-            navMenu.classList.toggle('active');
-        });
+    const openMenu = () => {
+        sidebar.classList.add('active');
+        overlay.classList.add('active');
+    };
+
+    const closeMenu = () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    };
+
+    if (menuToggle && sidebar && overlay && closeBtn) {
+        menuToggle.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
     }
 });
