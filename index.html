@@ -12,14 +12,14 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a class="header-reference" href="">
-                    <!-- ИСПРАВЛЕНО: Добавлен onerror для обработки ошибок загрузки -->
+                <!-- ИСПРАВЛЕНО: Убедимся, что ссылка ведет на index.html -->
+                <a class="header-reference" href="index.html">
                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
                 </a>
                 <nav class="nav-menu">
                     <ul>
-                        <li><a href="" class="active">Главная WiP</a></li>
+                        <li><a href="index.html" class="active">Главная WiP</a></li>
                         <li><a href="participants.html">Участники</a></li>
                         <li><a href="organizers.html">Организаторы</a></li>
                     </ul>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="cta-container">
-                    <a href="participants.html" class="btn cta-btn">Присоединиться к нам</a>
+                    <a href="https://t.me/Alive_kurs" class="btn cta-btn">Присоединиться к нам</a>
                 </div>
             </section>
         </div>
@@ -59,13 +59,16 @@
             <div class="container">
                 <h2 class="gallery-title">Кадры с ивентов</h2>
                 <div class="image-grid">
-                    <img src="https://placehold.co/600x400/2a3b4c/c1a270?text=Arma+3+Battle" alt="Скриншот из игры Arma 3">
-                    <img src="https://placehold.co/600x400/3c4a5c/c1a270?text=Teamwork" alt="Скриншот из игры Arma 3">
-                    <img src="https://placehold.co/600x400/4a5b6c/c1a270?text=Night+Ops" alt="Скриншот из игры Arma 3">
+                    <img src="https://i.pinimg.com/736x/6a/4c/6d/6a4c6ddf038d262595473effcc11a3f3.jpg" alt="Скриншот из игры Arma 3">
+                    <img src="https://i.pinimg.com/736x/d5/aa/0e/d5aa0e091715eeeba58e69b0b8642b1c.jpg" alt="Скриншот из игры Arma 3">
+                    <img src="https://i.pinimg.com/736x/43/57/f6/4357f6ba44faec2f8845a8ed97f71d27.jpg" alt="Скриншот из игры Arma 3">
                 </div>
             </div>
         </section>
         
     </main>
+
+    <!-- ДОБАВЛЕНО: Подключение файла main.js -->
+    <script src="js/main.js"></script>
 </body>
 </html>
