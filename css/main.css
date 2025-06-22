@@ -249,7 +249,7 @@ body {
 .pricing-card {
     background: #fff;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-medium);
     padding: var(--spacing-large) var(--spacing-medium);
     display: flex;
     flex-direction: column;
