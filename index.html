@@ -1,71 +1,63 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="ALIVE_Logo.png" type="image/x-icon">
-    <title>ALIVE</title>
-    <!-- Підключення шрифтів -->
+    <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
+    <title>ALIVE - Обучение и ивенты по Arma 3</title>
+    <!-- Подключаем единый файл стилей -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Підключення файлу стилів з параметром для оновлення кешу -->
-    <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
+    <!-- Боковое мобильное меню -->
+    <div class="overlay"></div>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <!-- Ссылки для мобильного меню будут вставлены динамически -->
+        </nav>
+    </aside>
+
     <header class="header">
-        
-        <a class="header-reference" href="#" class="logo">
-            <img class="header-logo" src="ALIVE_Logo.png" height="64" width="64" alt="ALIVE Logo" class="logo-img">
-            <h1>ALIVE</h1>
-            
-        </a>
-        
+        <div class="container">
+            <div class="header-content">
+                <a class="header-reference" href="#home">
+                    <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
+                    <h1>ALIVE</h1>
+                </a>
+                <!-- Навигация для десктопа -->
+                <nav class="nav-menu">
+                     <!-- Ссылки для десктопного меню будут вставлены динамически -->
+                </nav>
+                 <!-- Переключатель языков -->
+                <div class="lang-switcher">
+                    <button class="lang-btn" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="uk">UK</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <!-- Кнопка мобильного меню (гамбургер) -->
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
     </header>
 
     <main class="main">
-        
-        <div class="container">
-            <!-- Секція для відображення списку -->
-            <section id="participantsSection">
-                <span id="additional-info">
-                    <h2 class="main-title">Список учасників</h2>
-                    <span id="participant-quantity-section">
-                        <h2 class="main-title">Кількість учасників:</h2>
-                        <h2 class="main-title" id="participant-quantity">0</h2>
-                    </span>
-                </span>
-                <div class="controls-container">
-                    <div id="sortControls" class="sort-controls">
-                        <button class="sort-btn active" data-sort="default">За замовчуванням</button>
-                        <button class="sort-btn" data-sort="balance">За балансом</button>
-                        <button class="sort-btn" data-sort="name">За позивним</button>
-                        <button class="sort-btn" data-sort="unit">За підрозділом</button>
-                    </div>
-                    <input id="search-input"type="search" placeholder="Пошук учасників" aria-label="Пошук учасників">
-                    <button id="refreshBtn" class="btn refresh-btn">🔄 Оновити</button>
-                </div>
-                
-                <!-- Контейнер для повідомлень -->
-                <div id="messageContainer"></div>
-
-                <!-- Сітка для відображення карток -->
-                <div id="participantsContainer" class="participants-grid" aria-live="polite">
-                    <!-- Карточки будуть завантажені динамічно -->
-                </div>
-            </section>
-
-            <!-- Секція для відображення профілю -->
-            <section id="profileSection" class="hidden">
-                <button id="backBtn" class="btn back-btn">← Назад до списку</button>
-                <div id="profileContainer" class="profile">
-                    <!-- Профіль буде завантажений динамічно -->
-                </div>
-            </section>
+        <div class="container" id="app-root">
+            <!-- Контент будет загружаться сюда динамически -->
         </div>
     </main>
 
-    <!-- Підключення файлу скриптів з параметром для оновлення кешу -->
-    <script src="script.js?v=2" defer></script>
-
+    <!-- Подключаем скрипты -->
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
