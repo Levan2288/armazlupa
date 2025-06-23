@@ -4,45 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
-    <title>ALIVE</title>
-    <!-- Підключення шрифтів -->
+    <title>ALIVE - Участники</title>
+    <!-- Подключаем единый файл стилей -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Підключення файлу стилів з параметром для оновлення кешу -->
-    <link rel="stylesheet" href="css/participants.css?v=2">
 </head>
 <body>
 
+    <!-- Боковое мобильное меню -->
+    <div class="overlay"></div>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="participants.html" class="active">Участники</a></li>
+                <li><a href="organizers.html">Организаторы</a></li>
+                <li><a href="price.html">Прайс-лист</a></li>
+            </ul>
+        </nav>
+    </aside>
+
     <header class="header">
-        
         <div class="container">
             <div class="header-content">
-                <!-- ИСПРАВЛЕНО: ссылка на главную страницу -->
                 <a class="header-reference" href="index.html">
                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
                 </a>
+                <!-- Навигация для десктопа -->
                 <nav class="nav-menu">
                     <ul>
-                        <!-- ИСПРАВЛЕНО: ссылка на главную страницу -->
-                        <li><a href="index.html" >Главная</a></li>
+                        <li><a href="index.html">Главная</a></li>
                         <li><a href="participants.html" class="active">Участники</a></li>
                         <li><a href="organizers.html">Организаторы</a></li>
                         <li><a href="price.html">Прайс-лист</a></li>
                     </ul>
                 </nav>
+                <!-- Кнопка мобильного меню (гамбургер) -->
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </header>
 
     <main class="main">
-        
         <div class="container">
             <!-- Секція для відображення списку -->
             <section id="participantsSection">
                 <span id="additional-info">
                     <h2 class="main-title">Список учасників</h2>
                     <span id="participant-quantity-section">
-                        <h2 class="main-title">Кількість учасників:</h2>
+                        <h2 class="main-title">Кількість:</h2>
                         <h2 class="main-title" id="participant-quantity">0</h2>
                     </span>
                 </span>
@@ -53,7 +72,7 @@
                         <button class="sort-btn" data-sort="name">За позивним</button>
                         <button class="sort-btn" data-sort="unit">За підрозділом</button>
                     </div>
-                    <input id="search-input"type="search" placeholder="Пошук учасників" aria-label="Пошук учасників">
+                    <input id="search-input" type="search" placeholder="Пошук учасників" aria-label="Пошук учасників">
                     <button id="refreshBtn" class="btn refresh-btn">🔄 Оновити</button>
                 </div>
                 
@@ -62,7 +81,7 @@
 
                 <!-- Сітка для відображення карток -->
                 <div id="participantsContainer" class="participants-grid" aria-live="polite">
-                    <!-- Карточки будуть завантажені динамічно -->
+                    <!-- Карточки будут загружены динамически -->
                 </div>
             </section>
 
@@ -70,14 +89,16 @@
             <section id="profileSection" class="hidden">
                 <button id="backBtn" class="btn back-btn">← Назад до списку</button>
                 <div id="profileContainer" class="profile">
-                    <!-- Профіль буде завантажений динамічно -->
+                    <!-- Профиль будет загружен динамически -->
                 </div>
             </section>
         </div>
     </main>
 
-    <!-- Підключення файлу скриптів з параметром для оновлення кешу -->
+    <!-- Скрипт для данных участников -->
     <script src="js/participants.js" defer></script>
+    <!-- Скрипт для мобильного меню -->
+    <script src="js/mobile-menu.js" defer></script>
 
 </body>
 </html>

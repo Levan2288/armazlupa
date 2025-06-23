@@ -5,18 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
     <title>ALIVE - Обучение и ивенты по Arma 3</title>
-    <link rel="stylesheet" href="css/main.css">
+    <!-- Подключаем единый файл стилей -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- Боковое мобильное меню -->
+    <div class="overlay"></div>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="index.html" class="active">Главная</a></li>
+                <li><a href="participants.html">Участники</a></li>
+                <li><a href="organizers.html">Организаторы</a></li>
+                <li><a href="price.html">Прайс-лист</a></li>
+            </ul>
+        </nav>
+    </aside>
 
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <!-- ИСПРАВЛЕНО: Убедимся, что ссылка ведет на index.html -->
                 <a class="header-reference" href="index.html">
                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
                 </a>
+                <!-- Навигация для десктопа -->
                 <nav class="nav-menu">
                     <ul>
                         <li><a href="index.html" class="active">Главная</a></li>
@@ -25,6 +44,12 @@
                         <li><a href="price.html">Прайс-лист</a></li>
                     </ul>
                 </nav>
+                <!-- Кнопка мобильного меню (гамбургер) -->
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </header>
@@ -33,8 +58,8 @@
         <div class="container">
             <section id="welcomeSection">
                 <h2 class="main-title">Добро пожаловать в проект ALIVE</h2>
-                <p class="subtitle">Тактическое сообщество по Arma 3. Проводим обучение военному делу и организуем захватывающие ивенты каждую субботу.</p>
-                
+                <p class="subtitle">Тактическое сообщество по Arma 3. Проводим обучение военному делу вместе с инструктором с боевым опытом и организуем захватывающие ивенты каждую субботу. Граждане РФ и РБ не допускаются к участию.</p>
+
                 <div class="features">
                     <div class="feature-card">
                         <h3>Курс молодого бойца</h3>
@@ -60,16 +85,16 @@
             <div class="container">
                 <h2 class="gallery-title">Кадры с ивентов</h2>
                 <div class="image-grid">
-                    <img src="https://i.pinimg.com/736x/6a/4c/6d/6a4c6ddf038d262595473effcc11a3f3.jpg" alt="Скриншот из игры Arma 3">
-                    <img src="https://i.pinimg.com/736x/d5/aa/0e/d5aa0e091715eeeba58e69b0b8642b1c.jpg" alt="Скриншот из игры Arma 3">
-                    <img src="https://i.pinimg.com/736x/43/57/f6/4357f6ba44faec2f8845a8ed97f71d27.jpg" alt="Скриншот из игры Arma 3">
+                    <img src="https://i.pinimg.com/736x/6a/4c/6d/6a4c6ddf038d262595473effcc11a3f3.jpg" alt="Скриншот из игры Arma 3" onerror="this.onerror=null;this.src='https://placehold.co/300x200/cccccc/ffffff?text=Image';">
+                    <img src="https://i.pinimg.com/736x/d5/aa/0e/d5aa0e091715eeeba58e69b0b8642b1c.jpg" alt="Скриншот из игры Arma 3" onerror="this.onerror=null;this.src='https://placehold.co/300x200/cccccc/ffffff?text=Image';">
+                    <img src="https://i.pinimg.com/736x/43/57/f6/4357f6ba44faec2f8845a8ed97f71d27.jpg" alt="Скриншот из игры Arma 3" onerror="this.onerror=null;this.src='https://placehold.co/300x200/cccccc/ffffff?text=Image';">
                 </div>
             </div>
         </section>
         
     </main>
 
-    <!-- ДОБАВЛЕНО: Подключение файла main.js -->
-    <script src="js/main.js"></script>
+    <!-- Скрипт для мобильного меню -->
+    <script src="js/mobile-menu.js" defer></script>
 </body>
 </html>
