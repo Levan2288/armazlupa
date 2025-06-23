@@ -19,31 +19,27 @@
             <button class="close-btn">&times;</button>
         </div>
         <nav class="sidebar-nav">
-            <ul>
-                <li><a href="index.html" class="active">Главная</a></li>
-                <li><a href="participants.html">Участники</a></li>
-                <li><a href="organizers.html">Организаторы</a></li>
-                <li><a href="price.html">Прайс-лист</a></li>
-            </ul>
+            <!-- Ссылки для мобильного меню будут вставлены динамически -->
         </nav>
     </aside>
 
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a class="header-reference" href="index.html">
+                <a class="header-reference" href="#home">
                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
                 </a>
                 <!-- Навигация для десктопа -->
                 <nav class="nav-menu">
-                    <ul>
-                        <li><a href="index.html" class="active">Главная</a></li>
-                        <li><a href="participants.html">Участники</a></li>
-                        <li><a href="organizers.html">Организаторы</a></li>
-                        <li><a href="price.html">Прайс-лист</a></li>
-                    </ul>
+                     <!-- Ссылки для десктопного меню будут вставлены динамически -->
                 </nav>
+                 <!-- Переключатель языков -->
+                <div class="lang-switcher">
+                    <button class="lang-btn" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="uk">UK</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
                 <!-- Кнопка мобильного меню (гамбургер) -->
                 <button class="mobile-menu-toggle">
                     <span></span>
@@ -55,46 +51,13 @@
     </header>
 
     <main class="main">
-        <div class="container">
-            <section id="welcomeSection">
-                <h2 class="main-title">Добро пожаловать в проект ALIVE</h2>
-                <p class="subtitle">Тактическое сообщество по Arma 3. Проводим обучение военному делу вместе с инструктором с боевым опытом и организуем захватывающие ивенты каждую субботу. Граждане РФ и РБ не допускаются к участию.</p>
-
-                <div class="features">
-                    <div class="feature-card">
-                        <h3>Курс молодого бойца</h3>
-                        <p>Мы проводим качественное обучение для новичков и опытных игроков, помогая освоить все аспекты военного дела в Arma 3.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Еженедельные ивенты</h3>
-                        <p>Каждую субботу мы организуем масштабные ивенты с уникальными сценариями, задачами и отыгрышем роли.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Дружное сообщество</h3>
-                        <p>Присоединяйтесь к нашему сплоченному сообществу, находите новых друзей, сокомандников и единомышленников.</p>
-                    </div>
-                </div>
-
-                <div class="cta-container">
-                    <a href="https://t.me/Alive_kurs" class="btn cta-btn">Присоединиться к нам</a>
-                </div>
-            </section>
+        <div class="container" id="app-root">
+            <!-- Контент будет загружаться сюда динамически -->
         </div>
-        
-        <section class="gallery-section">
-            <div class="container">
-                <h2 class="gallery-title">Кадры с ивентов</h2>
-                <div class="image-grid">
-                    <img src="https://i.pinimg.com/736x/6a/4c/6d/6a4c6ddf038d262595473effcc11a3f3.jpg" alt="Скриншот из игры Arma 3" onerror="this.onerror=null;this.src='https://placehold.co/300x200/cccccc/ffffff?text=Image';">
-                    <img src="https://i.pinimg.com/736x/d5/aa/0e/d5aa0e091715eeeba58e69b0b8642b1c.jpg" alt="Скриншот из игры Arma 3" onerror="this.onerror=null;this.src='https://placehold.co/300x200/cccccc/ffffff?text=Image';">
-                    <img src="https://i.pinimg.com/736x/43/57/f6/4357f6ba44faec2f8845a8ed97f71d27.jpg" alt="Скриншот из игры Arma 3" onerror="this.onerror=null;this.src='https://placehold.co/300x200/cccccc/ffffff?text=Image';">
-                </div>
-            </div>
-        </section>
-        
     </main>
 
-    <!-- Скрипт для мобильного меню -->
-    <script src="js/mobile-menu.js" defer></script>
+    <!-- Подключаем скрипты -->
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

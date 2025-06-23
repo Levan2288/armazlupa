@@ -46,6 +46,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-family);
     background-color: var(--background-color);
@@ -121,6 +125,38 @@ body {
 .nav-menu a:hover, .nav-menu a.active {
     color: var(--text-color-dark);
     background-color: #f0f0f0;
+}
+
+/* ==========================================================================
+   Переключатель языков
+   ========================================================================== */
+.lang-switcher {
+    display: flex;
+    gap: var(--spacing-small);
+    margin-left: var(--spacing-medium);
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color-secondary);
+    padding: calc(var(--spacing-small) * 0.8) calc(var(--spacing-base) * 0.8);
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    font-weight: var(--font-weight-semibold);
+    transition: all var(--transition-speed) ease;
+    text-transform: uppercase;
+}
+
+.lang-btn:hover {
+    background-color: #f0f0f0;
+    color: var(--text-color-dark);
+}
+
+.lang-btn.active {
+    background-color: var(--primary-color);
+    color: var(--text-color-light);
+    border-color: var(--primary-color);
 }
 
 /* ==========================================================================
@@ -292,7 +328,7 @@ body {
 
 
 /* ==========================================================================
-   Стили для главной страницы (index.html)
+   Стили для главной страницы
    ========================================================================== */
 #welcomeSection {
     text-align: center;
@@ -363,7 +399,7 @@ body {
 }
 
 /* ==========================================================================
-   Стили для страницы участников (participants.html)
+   Стили для страницы участников
    ========================================================================== */
 #additional-info {
     display: flex;
@@ -669,18 +705,20 @@ body {
     margin-bottom: var(--spacing-small);
 }
 .note-card-value {
-    font-size: 1.2rem;
-    color: var(--text-color-secondary);
+    font-size: 1rem; /* Adjusted for better readability */
+    color: var(--text-color-dark); /* Changed for better contrast */
     margin-top: var(--spacing-small);
     display: block;
     white-space: pre-wrap;
     background-color: var(--background-color);
     padding: var(--spacing-base);
     border-radius: var(--border-radius-small);
+    line-height: 1.5;
 }
 
+
 /* ==========================================================================
-   Стили для страницы организаторов (organizers.html)
+   Стили для страницы организаторов
    ========================================================================== */
 .organizer-section {
     background-color: var(--surface-color);
@@ -764,7 +802,7 @@ body {
 }
 
 /* ==========================================================================
-   Стили для прайс-листа (price.html)
+   Стили для прайс-листа
    ========================================================================== */
 .pricing-section {
     padding: var(--spacing-large) var(--spacing-medium);
@@ -862,6 +900,11 @@ body {
         display: none; /* Скрываем десктопное меню */
     }
 
+    .lang-switcher {
+        margin-left: auto;
+        margin-right: var(--spacing-base);
+    }
+    
     .mobile-menu-toggle {
         display: block; /* Показываем гамбургер */
     }
