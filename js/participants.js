@@ -251,10 +251,6 @@ const App = {
      */
     renderProfile(profileId) {
         const profile = this.state.profiles[profileId];
-        if (profile == null) {
-            this.elements.profileContainer.innerHTML = '<p class="message error">Профіль не знайдено.</p>';
-            return;
-        }
         this.elements.profileContainer.innerHTML = this.createProfileHTML(profile);
     },
     
