@@ -457,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <section id="participantsSection">
                     <div id="additional-info">
                         <h2 class="main-title">${T.participants_title}</h2>
-                        <h2 class="main-title">${T.pmc_balance} <span id="totalBalance">0</span> <img src="images/Acoin.png" class="coin-img"></h2>
+                        <h2 class="main-title">Баланс ЧВК: <span id="totalBalance">0</span> <img src="images/Acoin.png" class="coin-img"></h2>
                         <span id="participant-quantity-section">
                             <h2 class="main-title">${T.participants_quantity}</h2>
                             <h2 class="main-title" id="participant-quantity">0</h2>
