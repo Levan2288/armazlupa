@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
-    <title>ALIVE - Обучение и ивенты по Arma 3</title>
-    <!-- Подключаем единый файл стилей -->
+    <title>ALIVE - Главная</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="page-home">
 
     <!-- Боковое мобильное меню -->
     <div class="overlay"></div>
@@ -18,14 +16,13 @@
         <div class="sidebar-header">
             <button class="close-btn">&times;</button>
         </div>
-        <nav class="sidebar-nav">
-            <!-- Ссылки для мобильного меню будут вставлены динамически -->
-        </nav>
+        <nav class="sidebar-nav"></nav>
     </aside>
 
     <header class="header">
         <div class="container">
             <div class="header-content">
+<<<<<<< Updated upstream
                 <a class="header-reference" href="#home">
                     <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
                     <h1>ALIVE</h1>
@@ -35,29 +32,68 @@
                      <!-- Ссылки для десктопного меню будут вставлены динамически -->
                 </nav>
                  <!-- Переключатель языков -->
+=======
+                <a class="header-reference" href="index.html">
+                    <img class="header-logo" src="images/ALIVE_Logo.png" alt="ALIVE Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/2a3b4c/ffffff?text=LOGO';">
+                    <h1>ALIVE</h1>
+                </a>
+                <nav class="nav-menu"></nav>
+>>>>>>> Stashed changes
                 <div class="lang-switcher">
                     <button class="lang-btn" data-lang="ru">RU</button>
                     <button class="lang-btn" data-lang="uk">UK</button>
                     <button class="lang-btn" data-lang="en">EN</button>
                 </div>
+<<<<<<< Updated upstream
                 <!-- Кнопка мобильного меню (гамбургер) -->
                 <button class="mobile-menu-toggle">
                     <span></span>
                     <span></span>
                     <span></span>
+=======
+                <button class="mobile-menu-toggle">
+                    <span></span><span></span><span></span>
+>>>>>>> Stashed changes
                 </button>
             </div>
         </div>
     </header>
 
     <main class="main">
-        <div class="container" id="app-root">
-            <!-- Контент будет загружаться сюда динамически -->
+        <div class="container">
+            <section id="welcomeSection">
+                <h2 class="main-title" data-lang-key="home_title"></h2>
+                <p class="subtitle" data-lang-key="home_subtitle"></p>
+                <div class="features">
+                    <div class="feature-card">
+                        <h3 data-lang-key="home_feature1_title"></h3>
+                        <p data-lang-key="home_feature1_text"></p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 data-lang-key="home_feature2_title"></h3>
+                        <p data-lang-key="home_feature2_text"></p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 data-lang-key="home_feature3_title"></h3>
+                        <p data-lang-key="home_feature3_text"></p>
+                    </div>
+                </div>
+                <div class="cta-container">
+                    <a href="https://t.me/Alive_kurs" class="btn cta-btn" data-lang-key="home_join_button"></a>
+                </div>
+            </section>
+            <section class="gallery-section">
+                <h2 class="gallery-title" data-lang-key="home_gallery_title"></h2>
+                <div class="image-grid">
+                    <img src="https://i.pinimg.com/736x/6a/4c/6d/6a4c6ddf038d262595473effcc11a3f3.jpg" alt="Скриншот из игры Arma 3" onerror="this.onerror=null;this.src='https://placehold.co/300x200/cccccc/ffffff?text=Image';">
+                    <img src="https://i.pinimg.com/736x/d5/aa/0e/d5aa0e091715eeeba58e69b0b8642b1c.jpg" alt="Скриншот из игры Arma 3" onerror="this.onerror=null;this.src='https://placehold.co/300x200/cccccc/ffffff?text=Image';">
+                    <img src="https://i.pinimg.com/736x/43/57/f6/4357f6ba44faec2f8845a8ed97f71d27.jpg" alt="Скриншот из игры Arma 3" onerror="this.onerror=null;this.src='https://placehold.co/300x200/cccccc/ffffff?text=Image';">
+                </div>
+            </section>
         </div>
     </main>
 
-    <!-- Подключаем скрипты -->
     <script src="js/translations.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/common.js"></script>
 </body>
 </html>
