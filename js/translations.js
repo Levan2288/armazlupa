@@ -18,6 +18,7 @@ const translations = {
         home_join_button: 'Присоединиться к нам',
         home_gallery_title: 'Кадры с ивентов',
         // --- Страница участников ---
+        pmc_balance: 'Баланс ЧВК',
         participants_title: 'Список участников',
         participants_quantity: 'Количество:',
         sort_default: 'По умолчанию',
@@ -86,6 +87,7 @@ const translations = {
         home_join_button: 'Приєднатися до нас',
         home_gallery_title: 'Кадри з івентів',
         // --- Сторінка учасників ---
+        pmc_balance: 'Баланс ПВК',
         participants_title: 'Список учасників',
         participants_quantity: 'Кількість:',
         sort_default: 'За замовчуванням',
@@ -154,6 +156,7 @@ const translations = {
         home_join_button: 'Join Us',
         home_gallery_title: 'Screenshots from Events',
         // --- Participants Page ---
+        pmc_balance: 'PMC Balance',
         participants_title: 'List of Participants',
         participants_quantity: 'Quantity:',
         sort_default: 'Default',

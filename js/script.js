@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (row.length > 0 && row[0]?.trim()) {
                     const id = row[0].trim().toLowerCase(); 
                     newProfiles[id] = {
-                        id: id,
+                        id,
                         name: row[0]?.trim() || T.callsign_empty,
                         position: row[1]?.trim() || T.not_specified,
                         unit: row[2]?.trim() || T.not_specified,
@@ -457,6 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <section id="participantsSection">
                     <div id="additional-info">
                         <h2 class="main-title">${T.participants_title}</h2>
+                        <h2 class="main-title">Баланс ЧВК: <span id="totalBalance">0</span> <img src="images/Acoin.png" class="coin-img"></h2>
                         <span id="participant-quantity-section">
                             <h2 class="main-title">${T.participants_quantity}</h2>
                             <h2 class="main-title" id="participant-quantity">0</h2>
