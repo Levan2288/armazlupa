@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // Этот скрипт выполняется только на странице участников
 
@@ -28,21 +30,25 @@ document.addEventListener('DOMContentLoaded', () => {
         participantsList: (T) => `
             <section id="participantsSection">
                 <div id="additional-info">
-                    <h2 class="main-title">${T.participants_title}</h2>
+                    <h2 class="main-title" data-lang-key="participants_title">${T.participants_title}</h2>
+                    <span id="PMC-balance-section">
+                        <h2 class="main-title" data-lang-key="PMC_balance_title">${T.PMC_balance_title}</h2>
+                        <h2 class="main-title" id="PMC-balance" style="text-align: center;">${PMC_balance}</h2>
+                    </span>
                     <span id="participant-quantity-section">
-                        <h2 class="main-title">${T.participants_quantity}</h2>
+                        <h2 class="main-title" data-lang-key="participants_quantity">${T.participants_quantity}</h2>
                         <h2 class="main-title" id="participant-quantity">0</h2>
                     </span>
                 </div>
                 <div class="controls-container">
                     <div id="sortControls" class="sort-controls">
-                        <button class="sort-btn active" data-sort="default">${T.sort_default}</button>
-                        <button class="sort-btn" data-sort="balance">${T.sort_balance}</button>
-                        <button class="sort-btn" data-sort="name">${T.sort_name}</button>
-                        <button class="sort-btn" data-sort="unit">${T.sort_unit}</button>
+                        <button class="sort-btn active" data-sort="default" data-lang-key="sort_default">${T.sort_default}</button>
+                        <button class="sort-btn" data-sort="balance" data-lang-key="sort_balance">${T.sort_balance}</button>
+                        <button class="sort-btn" data-sort="name" data-lang-key="sort_name">${T.sort_name}</button>
+                        <button class="sort-btn" data-sort="unit" data-lang-key="sort_unit">${T.sort_unit}</button>
                     </div>
-                    <input id="search-input" type="search" placeholder="${T.search_placeholder}" aria-label="${T.search_placeholder}">
-                    <button id="refreshBtn" class="btn refresh-btn">${T.refresh_button}</button>
+                    <input id="search-input" type="search" placeholder="${T.search_placeholder}">
+                    <button id="refreshBtn" class="btn refresh-btn" data-lang-key="refresh_button">${T.refresh_button}</button>
                 </div>
                 <div id="messageContainer" class="hidden"></div>
                 <div id="participantsContainer" class="participants-grid" aria-live="polite"></div>
@@ -60,9 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="info-item"><span class="info-label">${T.unit}:</span><span class="info-value">${p.unit}</span></div>
-                        <div class="info-item"><span class="info-label">${T.certificate}:</span><span class="info-value">${p.certificate}</span></div>
-                        <div class="info-item balance"><span class="info-label">${T.balance}:</span><span class="info-value balance-value">${p.balance}<img src="images/Acoin.png" class="coin-img"></span></div>
+                        <div class="info-item"><span class="info-label" data-lang-key="unit">${T.unit}:</span><span class="info-value">${p.unit}</span></div>
+                        <div class="info-item"><span class="info-label" data-lang-key="certificate">${T.certificate}:</span><span class="info-value">${p.certificate}</span></div>
+                        <div class="info-item balance"><span class="info-label" data-lang-key="balance">${T.balance}:</span><span class="info-value balance-value">${p.balance}<img src="images/Acoin.png" class="coin-img"></span></div>
                     </div>
                 </a>`;
         },
@@ -70,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
              const avatarUrl = getImageUrl(p.avatarUrl);
              return `
                 <section id="profileSection">
-                     <a href="participants.html" class="btn back-btn">${T.back_button}</a>
+                     <a href="participants.html" class="btn back-btn" data-lang-key="back_button">${T.back_button}</a>
                      <div class="profile">
                         <div class="profile-header">
                             <img src="${avatarUrl}" alt="Avatar ${p.name}" class="profile-avatar">
@@ -79,15 +85,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div class="profile-content">
                             <div class="profile-section">
-                                <h3 class="section-title">${T.main_info}</h3>
+                                <h3 class="section-title" data-lang-key="main_info">${T.main_info}</h3>
                                 <div class="info-grid">
-                                    <div class="info-card"><div class="info-card-title">${T.unit}</div><div class="info-card-value">${p.unit}</div></div>
-                                    <div class="info-card"><div class="info-card-title">${T.certificate}</div><div class="info-card-value">${p.certificate}</div></div>
-                                    <div class="info-card"><div class="info-card-title">${T.balance}</div><div class="info-card-value balance">${p.balance} <img src="images/Acoin.png" class="coin-img"></div></div>
+                                    <div class="info-card"><div class="info-card-title" data-lang-key="unit">${T.unit}</div><div class="info-card-value">${p.unit}</div></div>
+                                    <div class="info-card"><div class="info-card-title" data-lang-key="certificate">${T.certificate}</div><div class="info-card-value">${p.certificate}</div></div>
+                                    <div class="info-card"><div class="info-card-title" data-lang-key="balance">${T.balance}</div><div class="info-card-value balance">${p.balance} <img src="images/Acoin.png" class="coin-img"></div></div>
                                 </div>
                             </div>
                             <div class="profile-section">
-                                 <h3 class="section-title">${T.notes}</h3>
+                                 <h3 class="section-title" data-lang-key="notes">${T.notes}</h3>
                                  <div class="note-card-value">${p.note.replace(/\n/g, '<br>')}</div>
                             </div>
                         </div>
@@ -159,6 +165,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function changeLanguage(lang) 
+    {
+        const currentLang = localStorage.getItem('lang') || 'ru';
+        if (lang === currentLang) return;
+        localStorage.setItem('lang', lang);
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        loadTranslations(lang);
+    }
+
     // --- ЗАГРУЗКА ДАННЫХ ---
     function parseCSV(text) {
         const lines = text.replace(/\r/g, '').split('\n');
@@ -206,6 +223,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+        const PMC_balance_row = rows.slice(1, 2); // Сохраняем баланс PMC из 9-й строки
+        PMC_balance = parseInt(PMC_balance_row[0][8].trim(), 10) || 0; // Предполагаем, что баланс в 9-й колонке
+        console.log(`PMC Balance: ${PMC_balance}`);
+        
+        
 
         if (Object.keys(newProfiles).length === 0) throw new Error(T.no_valid_data);
         state.profiles = newProfiles;
@@ -239,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- ИНИЦИАЛИЗАЦИЯ СТРАНИЦЫ ---
     async function initParticipantsPage() {
-        async function loadTranslations () {
+        async function loadTranslation () {
             const currentLang = localStorage.getItem('lang') || 'ru';
             try {
                 const res = await fetch(`locales/${currentLang}.json`);
@@ -253,10 +275,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         console.log("Initializing participants page...");
-        loadTranslations().then(async translations => {
+        loadTranslation().then(async translations => {
         window.translations = translations;
         const success = await loadData();
         console.log("Data loaded:", success);
+        console.log("Ключи словаря:", Object.keys(window.translations));
         // После загрузки данных, решаем что рендерить
         const urlParams = new URLSearchParams(window.location.search);
         const profileId = urlParams.get('id');
@@ -292,6 +315,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target.matches('.sort-btn')) handleSort(e.target.dataset.sort);
         });
         document.getElementById('search-input')?.addEventListener('input', renderParticipants);
+        document.querySelector('.lang-switcher').addEventListener('click', e => {
+        if (e.target.matches('.lang-btn')) {
+            changeLanguage(e.target.dataset.lang);
+        }
+    });
     }
     
     initParticipantsPage();

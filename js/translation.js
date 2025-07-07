@@ -18,6 +18,7 @@ async function loadTranslations(lang) {
         const key = el.getAttribute('data-lang-key');
         if (dict[key]) el.textContent = dict[key];
     });
+    document.getElementById('search-input').setAttribute('placeholder', dict['search_placeholder']);
 }
 
 export { loadTranslations };
