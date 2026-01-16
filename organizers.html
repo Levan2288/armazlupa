@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/ALIVE_Logo.png" type="image/x-icon">
+    <title>ALIVE - Организаторы</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-organizers">
+
+    <!-- Боковое мобильное меню -->
+    <div class="overlay"></div>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn">&times;</button>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="index.html" data-lang-key="nav_home">Главная</a></li>
+                <li><a href="participants.html" data-lang-key="nav_participants">Участники</a></li>
+                <li><a href="organizers.html" data-lang-key="nav_organizers" class="active">Организаторы</a></li>
+                <li><a href="price.html" data-lang-key="nav_price">Прайс-лист</a></li>
+                <li><a href="https://t.me/Alive_kurs" target="_blank" data-lang-key="nav_join">Присоединиться</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div id="header-container"></div>
+
+    <main class="main">
+        <div class="container">
+            <section class="organizer-section">
+                <div class="organizer-photo">
+                    <img src="images/photo_2025-05-25_10-17-57.jpg" alt="Фото інструктора" onerror="this.onerror=null;this.src='https://placehold.co/250x300/cccccc/ffffff?text=Photo';">
+                </div>
+                <div class="organizer-info">
+                    <h2 data-lang-key="organizer_name"></h2>
+                    <p class="role" data-lang-key="organizer_role"></p>
+                    <p data-lang-key="organizer_desc"></p>
+                    <ul class="info-list">
+                        <li><strong data-lang-key="organizer_rank"></strong> <span data-lang-key="organizer_rank_value"></span></li>
+                        <li><strong data-lang-key="organizer_service_years"></strong> <span data-lang-key="organizer_service_years_value"></span></li>
+                        <li><strong data-lang-key="organizer_service_areas"></strong>
+                            <ul class="sub-list">
+                                <li data-lang-key="organizer_service_area1"></li>
+                                <li data-lang-key="organizer_service_area2"></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script type="module" src="js/common.js"></script>
+</body>
+</html>
