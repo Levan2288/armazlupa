@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const App = {
@@ -582,5 +583,4 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     App.init();
-
 });
