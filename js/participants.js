@@ -1,30 +1,27 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
-// --- КОНФИГУРАЦИЯ FIREBASE ---
-// Скопировано из вашего app.js. 
-// ВАЖНО: Убедитесь, что apiKey заполнен, если он требуется для доступа.
 const firebaseConfig = {
-    apiKey: "", // Вставьте сюда ваш API Key, если он есть
+    apiKey: "AIzaSyBQbeYu7QMrm2C5tQNehzlFaIK1iMm6ZfI",
     authDomain: "a-coin-fb077.firebaseapp.com",
+    databaseURL: "https://a-coin-fb077-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "a-coin-fb077",
-    storageBucket: "a-coin-fb077.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abcdef"
+    storageBucket: "a-coin-fb077.firebasestorage.app",
+    messagingSenderId: "190102987448",
+    appId: "1:190102987448:web:f7c363053d732817baca4d",
+    measurementId: "G-F1QSGEK6N5"
 };
 
-// Инициализация Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-// Глобальная переменная для баланса ЧВК (используется в шаблоне)
 let PMC_balance = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Этот скрипт выполняется только на странице участников
 
     const config = {
-        // Старые ID таблиц больше не нужны, но оставляем defaultImageUrl
         defaultImageUrl: 'https://i.pinimg.com/736x/87/a4/08/87a408ed3ffa34ff6d8c32f9bf7f72a7.jpg'
     };
 
@@ -36,8 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const contentArea = document.getElementById('content-area');
 
-    // Объект переводов (предполагаем, что он был в оригинальном файле, 
-    // восстанавливаем базовые ключи, чтобы не сломать рендер, если их не было)
     const translations = {
         participants_title: "Личный состав",
         PMC_balance_title: "Баланс ЧВК",
@@ -56,15 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
         notes: "Заметки"
     };
 
-    function getCurrentLang() {
-        return localStorage.getItem('lang') || 'ru';
-    }
-
     function getImageUrl(profileUrl) {
         return (profileUrl && profileUrl.startsWith('http')) ? profileUrl : config.defaultImageUrl;
     }
 
-    // --- ШАБЛОНЫ (Без изменений) ---
     const templates = {
         participantsList: (T) => `
             <section id="participantsSection">
@@ -112,11 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 </a>`;
         },
         profileDetails: (p, T) => {
-             const avatarUrl = getImageUrl(p.avatarUrl);
-             return `
+            const avatarUrl = getImageUrl(p.avatarUrl);
+            return `
                 <section id="profileSection">
-                     <a href="participants.html" class="btn back-btn" data-lang-key="back_button">${T.back_button}</a>
-                     <div class="profile">
+                    <a href="participants.html" class="btn back-btn" data-lang-key="back_button">${T.back_button}</a>
+                    <div class="profile">
                         <div class="profile-header">
                             <img src="${avatarUrl}" alt="Avatar ${p.name}" class="profile-avatar">
                             <h2 class="profile-name">${p.name}</h2>
@@ -142,29 +132,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- ЛОГИКА ОТОБРАЖЕНИЯ ---
-
     function renderParticipants() {
         const container = document.getElementById('participantsContainer');
         if (!container) return;
-        
+
         container.innerHTML = '';
-        const T = translations; // Используем локальный объект переводов
+        const T = translations;
 
         let profilesList = Object.values(state.profiles);
 
-        // Фильтрация (поиск)
         const searchInput = document.getElementById('search-input');
         if (searchInput && searchInput.value) {
             const term = searchInput.value.toLowerCase();
-            profilesList = profilesList.filter(p => 
-                p.name.toLowerCase().includes(term) || 
+            profilesList = profilesList.filter(p =>
+                p.name.toLowerCase().includes(term) ||
                 p.unit.toLowerCase().includes(term) ||
                 p.position.toLowerCase().includes(term)
             );
         }
 
-        // Сортировка
         if (state.currentSort === 'balance') {
             profilesList.sort((a, b) => parseFloat(b.balance) - parseFloat(a.balance));
         } else if (state.currentSort === 'name') {
@@ -172,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (state.currentSort === 'unit') {
             profilesList.sort((a, b) => a.unit.localeCompare(b.unit));
         }
-        // default - порядок не гарантируется в объекте, но для списка оставим как есть
 
         profilesList.forEach(p => {
             container.innerHTML += templates.participantCard(p, T);
@@ -182,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderProfile(profileId) {
         const profile = state.profiles[profileId];
         const T = translations;
-        
+
         if (profile) {
             contentArea.innerHTML = templates.profileDetails(profile, T);
         } else {
@@ -190,28 +175,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- ЗАГРУЗКА ДАННЫХ ИЗ FIREBASE ---
-    
     async function initParticipantsPage() {
         state.isLoading = true;
-        // Можно добавить спиннер, если нужно
 
         try {
             console.log("Fetching users from Firebase...");
             const querySnapshot = await getDocs(collection(db, "users"));
-            
+
             const profiles = {};
             let totalBalance = 0;
 
             querySnapshot.forEach((doc) => {
                 const data = doc.data();
-                
-                // --- ДОБАВЛЕНА ПРОВЕРКА ---
-                // Если роль 'admin', пропускаем этого пользователя и не добавляем в список
-                if (data.role === 'admin') {
-                    return; 
-                }
-                // ---------------------------
+
+                if (data.role === 'admin') return;
 
                 profiles[doc.id] = {
                     id: doc.id,
@@ -221,20 +198,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     certificate: data.certificate || "Неизвестно",
                     balance: data.balance !== undefined ? data.balance : 0,
                     note: data.notes || "",
-                    avatarUrl: "" 
+                    avatarUrl: ""
                 };
 
-                // Подсчет общего баланса (админы теперь не учитываются)
                 totalBalance += (Number(data.balance) || 0);
             });
 
             state.profiles = profiles;
             state.isLoading = false;
-            
-            // Обновляем глобальный баланс
             PMC_balance = totalBalance;
 
-            // Роутинг (список или детальная страница)
             const urlParams = new URLSearchParams(window.location.search);
             const profileId = urlParams.get('id');
 
@@ -243,14 +216,16 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const T = translations;
                 contentArea.innerHTML = templates.participantsList(T);
-                
-                // Обновляем количество участников
+
                 const quantityEl = document.getElementById('participant-quantity');
-                if(quantityEl) quantityEl.textContent = Object.keys(state.profiles).length || 0;
-                
+                if (quantityEl) quantityEl.textContent = Object.keys(state.profiles).length || 0;
+
+                const pmcBalanceEl = document.getElementById('PMC-balance');
+                if (pmcBalanceEl) pmcBalanceEl.textContent = PMC_balance;
+
                 renderParticipants();
                 bindListEvents();
-                console.log("Participants page initialized with Firebase data.");
+                console.log("Participants loaded:", Object.keys(state.profiles).length, "users");
             }
 
         } catch (error) {
@@ -258,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
             contentArea.innerHTML = `<p style="color:red; text-align:center;">Ошибка загрузки данных: ${error.message}</p>`;
         }
     }
-    
+
     function handleSort(type) {
         state.currentSort = type;
         document.querySelectorAll('.sort-btn').forEach(btn => {
@@ -273,19 +248,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target.matches('.sort-btn')) handleSort(e.target.dataset.sort);
         });
         document.getElementById('search-input')?.addEventListener('input', renderParticipants);
-        
-        // Логика переключения языка (если она была)
-        const langSwitcher = document.querySelector('.lang-switcher');
-        if (langSwitcher) {
-            langSwitcher.addEventListener('click', e => {
-                if (e.target.matches('.lang-btn')) {
-                    // changeLanguage(e.target.dataset.lang); // Функция не определена в сниппете, оставим заглушку
-                    console.log("Switch lang to", e.target.dataset.lang);
-                }
-            });
-        }
     }
-    
-    // Запуск
-    initParticipantsPage();
+
+    // Сначала анонимный вход → потом запрос к Firestore
+    signInAnonymously(auth)
+        .then(() => {
+            console.log("Firebase: signed in anonymously");
+            initParticipantsPage();
+        })
+        .catch((error) => {
+            console.error("Anonymous auth failed:", error.code, error.message);
+            contentArea.innerHTML = `
+                <div style="color:red; text-align:center; padding: 2rem;">
+                    <strong>Ошибка авторизации Firebase</strong><br><br>
+                    ${error.message}<br><br>
+                    <small>Включите Anonymous Authentication:<br>
+                    Firebase Console → Authentication → Sign-in method → Anonymous → Enable</small>
+                </div>`;
+        });
 });
