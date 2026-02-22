@@ -1,6 +1,45 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Глобальные элементы, общие для всех страниц ---
-    const elements = {
+import {loadTranslations} from './translation.js';
+
+
+// --- Глобальные элементы, общие для всех страниц ---
+let currentLang = 'ru'; // Язык по умолчанию
+let elements = {};
+
+function changeLanguage(lang) {
+    if (lang === currentLang) return;
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    elements.langSwitcher.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    loadTranslations(lang);
+}
+
+function openMobileMenu() {
+    elements.sidebar.classList.add('active');
+    elements.overlay.classList.add('active');
+}
+
+function closeMobileMenu() {
+    elements.sidebar.classList.remove('active');
+    elements.overlay.classList.remove('active');
+}
+
+function bindEvents() {
+    elements.langSwitcher.addEventListener('click', e => {
+        if (e.target.matches('.lang-btn')) {
+            changeLanguage(e.target.dataset.lang);
+        }
+    });
+    elements.menuToggle.addEventListener('click', openMobileMenu);
+    elements.closeBtn.addEventListener('click', closeMobileMenu);
+    elements.overlay.addEventListener('click', closeMobileMenu);
+}
+
+function init() {
+    
+    // Переопределяем элементы после вставки header
+    elements = {
         navMenu: document.querySelector('.nav-menu'),
         sidebarNav: document.querySelector('.sidebar-nav'),
         langSwitcher: document.querySelector('.lang-switcher'),
@@ -9,106 +48,38 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay: document.querySelector('.overlay'),
         closeBtn: document.querySelector('.close-btn'),
     };
-
-    let currentLang = 'ru';
-
-    // --- Навигация ---
-    const navLinks = {
-        home: { href: 'index.html', key: 'nav_home' },
-        participants: { href: 'participants.html', key: 'nav_participants' },
-        organizers: { href: 'organizers.html', key: 'nav_organizers' },
-        price: { href: 'price.html', key: 'nav_price' },
-    };
-
-    function renderNav(lang) {
-        const T = translations[lang];
-        const pageClass = document.body.className;
-
-        const navHTML = `
-            <ul>
-                ${Object.keys(navLinks).map(page => `
-                    <li>
-                        <a href="${navLinks[page].href}" class="${pageClass === 'page-' + page ? 'active' : ''}">
-                            ${T[navLinks[page].key]}
-                        </a>
-                    </li>
-                `).join('')}
-            </ul>
-        `;
-        elements.navMenu.innerHTML = navHTML;
-        elements.sidebarNav.innerHTML = navHTML;
+    // Определяем язык
+    const savedLang = localStorage.getItem('lang');
+    const supportedLangs = ['ru', 'en', 'uk'];
+    let browserLang = navigator.language.split('-')[0];
+    if (!supportedLangs.includes(browserLang)) {
+        browserLang = supportedLangs[0]; // Применяем стандартный язык
     }
+    currentLang = savedLang || browserLang;
+    // Применяем язык и рендерим элементы
+    elements.langSwitcher.querySelector(`[data-lang="${currentLang}"]`).classList.add('active');
+    bindEvents();
+    loadTranslations(currentLang);
+}
 
-    // --- Переключение языка ---
-    function applyTranslations(lang) {
-        const T = translations[lang];
-        document.querySelectorAll('[data-lang-key]').forEach(el => {
-            const key = el.dataset.langKey;
-            if (T[key]) {
-                el.innerHTML = T[key];
-            }
-        });
-        document.documentElement.lang = lang;
-    }
-
-    function changeLanguage(lang) {
-        if (!translations[lang] || lang === currentLang) return;
-        
-        currentLang = lang;
-        localStorage.setItem('lang', lang);
-
-        // Обновляем UI
-        elements.langSwitcher.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.lang === lang);
-        });
-
-        renderNav(lang);
-        applyTranslations(lang);
-    }
-
-    // --- Мобильное меню ---
-    function openMobileMenu() {
-        elements.sidebar.classList.add('active');
-        elements.overlay.classList.add('active');
-    }
-
-    function closeMobileMenu() {
-        elements.sidebar.classList.remove('active');
-        elements.overlay.classList.remove('active');
-    }
-
-    // --- Привязка событий ---
-    function bindEvents() {
-        elements.langSwitcher.addEventListener('click', e => {
-            if (e.target.matches('.lang-btn')) {
-                changeLanguage(e.target.dataset.lang);
-            }
-        });
-
-        elements.menuToggle.addEventListener('click', openMobileMenu);
-        elements.closeBtn.addEventListener('click', closeMobileMenu);
-        elements.overlay.addEventListener('click', closeMobileMenu);
-    }
-
-    // --- Инициализация ---
-    function init() {
-        // Определяем язык
-        const savedLang = localStorage.getItem('lang');
-        const browserLang = navigator.language.slice(0, 2);
-        let initialLang = savedLang || browserLang;
-        if (!translations[initialLang]) {
-            initialLang = 'ru';
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+        const headerContainer = document.getElementById('header-container');
+        if (headerContainer) {
+            headerContainer.innerHTML = data;    
         }
-        
-        currentLang = initialLang;
-
-        // Применяем язык и рендерим элементы
-        elements.langSwitcher.querySelector(`[data-lang="${currentLang}"]`).classList.add('active');
-        renderNav(currentLang);
-        applyTranslations(currentLang);
-        
-        bindEvents();
-    }
-
-    init();
+        const currentlocation = location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+        if (link.getAttribute('href') === currentlocation) {
+            link.classList.add('active');
+        }
+        else {
+            link.classList.remove('active');
+        }
+        });
+        init(); // Инициализация после загрузки header
+        });
+    
 });
