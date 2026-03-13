@@ -145,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <li><a href="#participants" data-page="participants">${T.nav_participants}</a></li>
                     <li><a href="#organizers" data-page="organizers">${T.nav_organizers}</a></li>
                     <li><a href="#price" data-page="price">${T.nav_price}</a></li>
+                    <li><a href="https://a-coin-1488.web.app" target="_blank">${T.nav_voentorg}</a></li>
                 </ul>
             `;
             this.elements.navMenu.innerHTML = navItems;

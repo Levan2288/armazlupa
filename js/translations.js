@@ -6,6 +6,7 @@ const translations = {
         nav_participants: 'Участники',
         nav_organizers: 'Организаторы',
         nav_price: 'Прайс-лист',
+        nav_voentorg: 'Военторг',
         // --- Главная страница ---
         home_title: 'Добро пожаловать в проект ALIVE',
         home_subtitle: 'Тактическое сообщество по Arma 3. Проводим обучение военному делу вместе с инструктором с боевым опытом и организуем захватывающие ивенты каждую субботу. Граждане РФ и РБ не допускаются к участию.',
@@ -75,6 +76,7 @@ const translations = {
         nav_participants: 'Учасники',
         nav_organizers: 'Організатори',
         nav_price: 'Прайс-лист',
+        nav_voentorg: 'Військторг',
         // --- Головна сторінка ---
         home_title: 'Ласкаво просимо до проєкту ALIVE',
         home_subtitle: 'Тактична спільнота по Arma 3. Проводимо навчання військовій справі разом з інструктором з бойовим досвідом та організовуємо захоплюючі івенти щосуботи. Громадяни РФ та РБ не допускаються до участі.',
@@ -144,6 +146,7 @@ const translations = {
         nav_participants: 'Participants',
         nav_organizers: 'Organizers',
         nav_price: 'Price List',
+        nav_voentorg: 'Military Store',
         // --- Home Page ---
         home_title: 'Welcome to the ALIVE Project',
         home_subtitle: 'A tactical community for Arma 3. We provide military training with an experienced instructor and organize exciting events every Saturday. Citizens of the Russian Federation and Belarus are not allowed to participate.',
